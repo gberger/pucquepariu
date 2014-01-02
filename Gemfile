@@ -6,6 +6,7 @@ gem 'rails', '4.0.1'
 gem 'pg'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'omniauth-facebook'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -20,10 +21,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :development do
-  gem 'rspec-rails'
-
   gem 'better_errors'
   gem 'binding_of_caller'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 
 group :production do
