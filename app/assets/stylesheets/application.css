@@ -11,6 +11,6 @@
  *= require_self
  */
 
-@import "bootstrap_and_overrides";
+@import "bootstrap_and_overrides.css.scss";
 @import "font-awesome";
 
