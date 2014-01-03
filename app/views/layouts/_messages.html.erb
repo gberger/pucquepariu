@@ -1,0 +1,18 @@
+<div id="messages">
+  <% if flash.keys.length > 0 %>
+    <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+            <div class="alert alert-<%= name == :notice ? "success" : "danger" %>">
+              <a class="close" data-dismiss="alert">&#215;</a>
+              <div id="flash_<%= name %>" class="flash-msg"> <%= raw msg %> </div>
+            </div>
+        <% end %>
+    <% end %>
+
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+        $('.flash-msg a').addClass('alert-link');
+      })
+    </script>
+  <% end %>
+</div>

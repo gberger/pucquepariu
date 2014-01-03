@@ -1,26 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= controller.controller_name %>">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUC Que Pariu</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= yield(:head) %>
 </head>
 <body>
 
-<div id="user_nav">
-  <% if current_user %>
-      Signed in as <strong><%= current_user.name %></strong>!
-      <% if current_user.is_admin? %>
-          <em>(Admin)</em>
-      <% end %>
-      <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
-</div>
+<div class="wrapper" id="wrapper">
 
-<%= yield %>
+  <!-- navbar -->
+  <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand" title="PUC Que Pariu!">
+          <!--<img src="http://i.imgur.com/3JFmiZm.png" alt="PUC Que Pariu!" class="logo"/>-->
+          PUC Que Pariu!
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to "Home", root_path %></li>
+        <li><a href="#">Teste</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><strong class="navbar-text"><%= current_user.name %></strong></li>
+          <li><%= link_to "Logout", signout_path, id: "sign_out" %></li>
+          <% if current_user.is_admin? %>
+            <li class="navbar-text">Admin</li>
+          <% end %>
+        <% else %>
+          <li><%= link_to "Login com Facebook", "/auth/facebook", id: "sing_in" %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </nav>
+  <!--/navbar -->
+
+  <!-- container -->
+  <div class="container" id="content">
+    <div class="content">
+      <div class="row">
+        <div class="span12">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+      </div>
+      <footer>
+      </footer>
+    </div>
+    <div class="push"></div>
+  </div>
+  <!--/container -->
+
+  <!-- footer
+  <div class="footer" id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="span3">oi</div>
+        <div class="span9">cara</div>
+      </div>
+    </div>
+  </div>
+  <!--/footer -->
+
+</div>
 
 </body>
 </html>
