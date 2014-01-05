@@ -31,6 +31,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
+group :test do
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
 group :production do
   gem 'rails_12factor' #Heroku
 end
