@@ -8,8 +8,15 @@ describe Course do
     course.abbreviation.should eq (course.abbreviation.upcase)
   end
 
-  it "can get the department abbreviation" do
-    course = build(:course)
-    course.department_abbreviation.should_not be_nil
+  describe :department_abbreviation do
+    it "is not nil" do
+      course = build(:course)
+      course.department_abbreviation.should_not be_nil
+    end
+
+    it "is part of the course's abbreviation" do
+      course = build(:course)
+      course.department_abbreviation.should eq (course.abbreviation[0, 3])
+    end
   end
 end
