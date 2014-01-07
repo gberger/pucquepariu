@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  has_many :exams
+
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false
 
