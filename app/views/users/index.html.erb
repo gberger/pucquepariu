@@ -18,7 +18,7 @@
         <td><%= user.name %></td>
         <td><a href="//facebook.com/<%= user.nickname %>"><%= user.nickname %></a></td>
         <td><%= user.email %></td>
-        <td><i class="<%= user.is_admin? ? 'fa fa-check' : 'glyphicon glyphicon-remove' %>"></i></td>
+        <td><%= user.is_admin? ? fa('check') : glyph('remove') %></td>
         <td><%= link_to "Toggle admin", toggle_admin_path(user), method: :put %></td>
       </tr>
     <% end %>
