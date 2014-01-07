@@ -1,4 +1,4 @@
-<h1>Listing courses</h1>
+<h1>Listing Courses</h1>
 
   <% @courses.each do |course| %>
     <div class="row">
@@ -19,5 +19,5 @@
 <br>
 
 <% if can? :create, Course %>
-  <%= link_to 'New course', new_course_path %>
+  <%= link_to i_add, new_course_path, class: 'btn btn-primary' %>
 <% end %>

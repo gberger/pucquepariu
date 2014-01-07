@@ -1,6 +1,6 @@
 <h1>
   <%= @course.abbreviation %> - <%= @course.name %>
-  <%= if can? :edit, @course then link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_course_path(@course), class: "btn btn-success" end %>
+  <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
 </h1>
 
 <h2>Provas</h2>
