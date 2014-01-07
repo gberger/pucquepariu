@@ -20,8 +20,7 @@ gem 'bootstrap_form'
 gem 'jquery-rails'
 gem 'turbolinks'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'redcarpet'
 
 group :development do
   gem 'better_errors'
