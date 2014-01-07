@@ -7,6 +7,7 @@ gem 'pg'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'omniauth-facebook'
+gem 'cancan'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -29,6 +30,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'debugger'
 end
 
 group :test do
@@ -38,12 +40,3 @@ end
 group :production do
   gem 'rails_12factor' #Heroku
 end
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
