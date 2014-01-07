@@ -1,0 +1,21 @@
+<h1>Listing courses</h1>
+
+  <% @courses.each do |course| %>
+    <div class="row">
+      <div class="col-md-12 well">
+        <h2>
+          <%= course.abbreviation %> - <%= course.name %>
+        </h2>
+        <ul>
+          <li><%= link_to 'Show', course %></li>
+          <li><%= link_to 'Edit', edit_course_path(course) %></li>
+          <li><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </div>
+    </div>
+    </tr>
+  <% end %>
+
+<br>
+
+<%= link_to 'New course', new_course_path %>

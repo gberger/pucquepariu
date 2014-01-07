@@ -1,4 +1,4 @@
-<%= form_for(@course) do |f| %>
+<%= bootstrap_form_for(@course) do |f| %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -11,19 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :abbreviation %><br>
-    <%= f.text_field :abbreviation %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">r
-    <%= f.label :credits %><br>
-    <%= f.number_field :credits %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :abbreviation %>
+  <%= f.text_field :name %>
+  <%= f.number_field :credits %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+
 <% end %>
