@@ -1,17 +1,7 @@
 <script src="/assets/javascripts/markdown.min.js"></script>
 
 <%= bootstrap_form_for(@course) do |f| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
-
-      <ul>
-        <% @course.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'layouts/validation_errors', locals: {errors: @course.errors} %>
 
   <%= f.text_field :abbreviation %>
   <%= f.text_field :name %>
