@@ -27,6 +27,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/disciplinas">Disciplinas</a></li>
+        <% if can? :read, User %><li><a href="/users">Users</a></li> <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

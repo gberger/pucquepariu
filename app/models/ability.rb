@@ -4,9 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new
     if user.is_admin?
-     can :manage, :all
+      can :manage, :all
     else
-     can :read, :all
+      can :read, :all
+      cannot :read, User
     end
 
     # The first argument to `can` is the action you are giving the user

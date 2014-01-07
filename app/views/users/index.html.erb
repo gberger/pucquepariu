@@ -1,0 +1,26 @@
+<h1>Listing Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Nickname</th>
+      <th>Email</th>
+      <th>Is Admin?</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="<%= user.is_admin? ? 'success' : '' %>">
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><a href="//facebook.com/<%= user.nickname %>"><%= user.nickname %></a></td>
+        <td><%= user.email %></td>
+        <td><i class="<%= user.is_admin? ? 'fa fa-check' : 'glyphicon glyphicon-remove' %>"></i></td>
+        <td><%= link_to "Toggle admin", toggle_admin_path(user), method: :put %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

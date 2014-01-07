@@ -9,4 +9,6 @@ Pqp::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  get "users", to: 'users#index'
+  put "users/:id/toggle_admin", to: 'users#toggle_admin', as: 'toggle_admin'
 end
