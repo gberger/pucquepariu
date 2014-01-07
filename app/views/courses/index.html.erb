@@ -8,8 +8,8 @@
         </h2>
         <ul>
           <li><%= link_to 'Show', course %></li>
-          <li><%= link_to 'Edit', edit_course_path(course) %></li>
-          <li><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <% if can? :edit, course then %> <li><%= link_to 'Edit', edit_course_path(course) %></li> <% end %>
+          <% if can? :delete, course then %> <li><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></li> <% end %>
         </ul>
       </div>
     </div>
@@ -18,4 +18,6 @@
 
 <br>
 
-<%= link_to 'New course', new_course_path %>
+<% if can? :create, Course %>
+  <%= link_to 'New course', new_course_path %>
+<% end %>
