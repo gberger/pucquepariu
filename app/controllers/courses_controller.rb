@@ -8,6 +8,9 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    unless params[:id].upcased?
+      redirect_to course_path(params[:id].upcase), status: :moved_permanently
+    end
     @course = Course.find_by_abbreviation(params[:id])
   end
 
@@ -18,6 +21,9 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    unless params[:id].upcased?
+      redirect_to edit_course_path(params[:id].upcase), status: :moved_permanently
+    end
     @course = Course.find_by_abbreviation(params[:id])
   end
 
