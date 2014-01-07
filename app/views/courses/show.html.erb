@@ -3,5 +3,11 @@
   <%= if can? :edit, @course then link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_course_path(@course), class: "btn btn-success" end %>
 </h1>
 
+<h2>Provas</h2>
+
+Existem <%= pluralize(@course.exams.length, 'prova') %>.
+
+<h2>Plano de Estudos</h2>
+
 <%= markdown @course.study_plan %>
 
