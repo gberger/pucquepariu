@@ -25,9 +25,9 @@
       </div>
 
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/disciplinas">Disciplinas</a></li>
-        <% if can? :read, User %><li><a href="/users">Users</a></li> <% end %>
+        <li class="<%= active_page(controller: :static, action: :index) %>"><a href="/">Home</a></li>
+        <li class="<%= active_page(controller: :courses) %>"><a href="/disciplinas">Disciplinas</a></li>
+        <% if can? :read, User %><li class="<%= active_page(controller: :users) %>"><a href="/users">Users</a></li> <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
