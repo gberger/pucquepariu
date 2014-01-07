@@ -1,3 +1,5 @@
+<script src="/assets/javascripts/markdown.min.js"></script>
+
 <%= bootstrap_form_for(@course) do |f| %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
@@ -14,6 +16,32 @@
   <%= f.text_field :abbreviation %>
   <%= f.text_field :name %>
   <%= f.number_field :credits %>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_area :study_plan, cols: 10, rows: 20, id: 'sp-input' %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-block" %>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Study plan preview <a target="_blank" href="http://nestacms.com/docs/creating-content/markdown-cheat-sheet"><i class="fa fa-question-circle"></i></a></label>
+        <div class="well" id="sp-preview"></div>
+      </div>
+    </div>
+  </div>
+
 
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    var old_input = $('#sp-input').val();
+    setInterval(function(){
+      var input = $('#sp-input').val();
+      if(input != markdown){
+        old_input = input;
+        $('#sp-preview').html(markdown.toHTML(input));
+      }
+    }, 1000)
+  })
+</script>

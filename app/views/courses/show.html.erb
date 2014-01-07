@@ -1,13 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1>
+  <%= @course.abbreviation %> - <%= @course.name %>
+  <%= if can? :edit, @course then link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_course_path(@course), class: "btn btn-success" end %>
+</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<%= markdown @course.study_plan %>
 
-<p>
-  <strong>Num:</strong>
-  <%= @course.credits %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course), class: "btn btn-primary" %>
