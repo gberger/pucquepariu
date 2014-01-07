@@ -20,6 +20,10 @@ gem 'bootstrap_form'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+gem 'friendly_id'
+
+gem 'fog'
+gem 'carrierwave'
 gem 'redcarpet'
 
 group :development do
