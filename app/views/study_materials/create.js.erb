@@ -1,0 +1,5 @@
+<% if @study_material.new_record? %>
+  alert("Fail!");
+<% else %>
+  $('#study_materials_table tbody').append("<%= j render partial: 'table_row', locals: {study_material: @study_material} %>");
+<% end %>

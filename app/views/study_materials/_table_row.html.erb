@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to study_material.course.name_with_abbreviation, course_path(study_material.course) %></td>
+  <td><%= if study_material.exam then study_material.exam.summary end%></td>
+  <td><%= study_material.title %></td>
+  <td><%= study_material.content_url %></td>
+  <td><%= link_to i_delete, study_material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
+</tr>

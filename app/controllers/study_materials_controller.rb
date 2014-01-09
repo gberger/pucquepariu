@@ -6,23 +6,11 @@ class StudyMaterialsController < ApplicationController
     @study_materials = StudyMaterial.all
   end
 
-  # GET /study_materials/new
-  def new
-    @study_material = StudyMaterial.new
-  end
-
   # POST /study_materials
   def create
     @study_material = StudyMaterial.new(study_material_params)
-
-    filename = study_material_params[:content].original_filename
-    @study_material.parse_filename(filename)
-
-    if @study_material.save
-      redirect_to action: 'index', notice: 'Study material was successfully created.'
-    else
-      render action: 'new'
-    end
+    @study_material.parse_filename(study_material_params[:content].original_filename)
+    @study_material.save
   end
 
   # DELETE /study_materials/1

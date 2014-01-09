@@ -1,30 +1,70 @@
 <h1>Listing Study Materials</h1>
 
 
-<table class="table">
+<table class="table" id="study_materials_table">
   <thead>
     <tr>
       <th>Disciplina</th>
       <th>Prova</th>
       <th>Título</th>
-      <th>URL</th>
+      <th style="width: 40%">URL</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @study_materials.each do |study_material| %>
-      <tr>
-        <td><%= link_to study_material.course.name_with_abbreviation, course_path(study_material.course) %></td>
-        <td><%= if study_material.exam then study_material.exam.summary end%></td>
-        <td><%= study_material.title %></td>
-        <td><%= study_material.content_url %></td>
-        <td><%= link_to i_delete, study_material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
-      </tr>
+      <%= render partial: 'table_row', locals: {study_material: study_material} %>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to i_add, new_study_material_path, class: 'btn btn-primary' %>
+<%= bootstrap_form_for StudyMaterial.new do |f| %>
+  <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl">
+  <div class="upload panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{%=o.name%}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="progress progress-striped active">
+        <div class="progress-bar active" role="progressbar" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script>
+  $(function(){
+    $('#new_study_material').fileupload({
+      dataType: "script",
+      add: function(e, data){
+
+        if(!/^[A-Z]{3}\d{4}\-/.test(data.files[0].name)){
+          alert("Nome do arquivo precisa começar com o código da disciplina e um traço. Exemplo: \"MAT1200-Lista 1.pdf\"");
+          return false;
+        }
+
+        data.context = $(tmpl("template-upload", data.files[0]));
+        $('#new_study_material').append(data.context);
+        data.submit()
+      },
+      progress: function(e, data){
+        if(data.context){
+          progress = parseInt(data.loaded/data.total * 100, 10);
+          data.context.find('.progress-bar').css('width', progress + '%');
+        }
+      },
+      done: function(e, data){
+        if(data.context){
+          data.context.find('.progress').removeClass('progress-striped active');
+          data.context.find('.progress-bar').addClass('progress-bar-success');
+        }
+      }
+    });
+  })
+</script>
