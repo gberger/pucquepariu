@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>Disciplina</th>
+      <th>Prova</th>
       <th>Título</th>
       <th>URL</th>
       <th></th>
@@ -17,6 +18,7 @@
     <% @study_materials.each do |study_material| %>
       <tr>
         <td><%= link_to study_material.course.name_with_abbreviation, course_path(study_material.course) %></td>
+        <td><%= if study_material.exam then link_to study_material.exam.summary, exam_path(study_material.exam) end%></td>
         <td><%= study_material.title %></td>
         <td><%= study_material.content_url %></td>
         <td><%= link_to i_edit, edit_study_material_path(study_material), class: "btn btn-xs btn-success" %></td>

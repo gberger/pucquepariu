@@ -9,6 +9,7 @@ class Ability
       can :read, :all
       cannot :read, User
       cannot :read, StudyMaterial
+      cannot :read, Exam
     end
 
     # The first argument to `can` is the action you are giving the user

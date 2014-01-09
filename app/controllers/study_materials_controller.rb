@@ -11,29 +11,17 @@ class StudyMaterialsController < ApplicationController
     @study_material = StudyMaterial.new
   end
 
-  # GET /study_materials/1/edit
-  def edit
-    @study_material = StudyMaterial.find(params[:id])
-  end
-
   # POST /study_materials
   def create
     @study_material = StudyMaterial.new(study_material_params)
+
+    filename = study_material_params[:content].original_filename
+    @study_material.parse_filename(filename)
 
     if @study_material.save
       redirect_to action: 'index', notice: 'Study material was successfully created.'
     else
       render action: 'new'
-    end
-  end
-
-  # PATCH/PUT /study_materials/1
-  def update
-    @study_material = StudyMaterial.find(params[:id])
-    if @study_material.update(study_material_params)
-      redirect_to action: 'index', notice: 'Study material was successfully updated.'
-    else
-      render action: 'edit'
     end
   end
 
