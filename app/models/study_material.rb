@@ -12,14 +12,14 @@ class StudyMaterial < ActiveRecord::Base
 
     self.course = Course.find_by_abbreviation(parts[0].upcase)
 
-    if m = /([A-Z]{3}\d{4})\-(\d{4})\-(\d)\-.(\d)\-([^\-]*)\-([^\-]*)/.match(filename_without_extension)
+    if m = /^([A-Z]{3}\d{4})\-(\d{4})\-(\d)\-.(\d)\-(.*)/.match(filename_without_extension)
       year = m[2]
       semester = m[3]
       number = m[4]
       exam = Exam.where(year: year, semester: semester, number: number, course_id: self.course.id).first_or_create
       self.exam = exam
 
-      self.title = m[5..-1].select do |str|
+      self.title = m[5].split('-').select do |str|
         not str.empty?
       end.join(' - ')
     else
