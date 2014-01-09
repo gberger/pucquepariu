@@ -1,6 +1,7 @@
 Pqp::Application.routes.draw do
 
   resources :study_materials
+  resources :exams
   resources :courses, path: "disciplinas"
 
   root 'static#index'
