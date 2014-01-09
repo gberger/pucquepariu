@@ -1,8 +1,0 @@
-<%= bootstrap_form_for(@study_material) do |f| %>
-  <%= render partial: 'layouts/validation_errors', locals: {errors: @study_material.errors} %>
-
-  <%= f.file_field :content %>
-  <%= f.submit "Submit", class: "btn btn-primary btn-block"%>
-<% end %>
-
-</script>
