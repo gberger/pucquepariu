@@ -22,6 +22,20 @@
 <br>
 
 <%= bootstrap_form_for StudyMaterial.new do |f| %>
+
+  <p>
+    Todo arquivo deve estar precedido do código de sua <%= link_to 'disciplina', courses_path %> (<%= link_to 'que já exista', new_course_path %>) e um traço. Exemplo: "MAT1200-Lista 1.pdf".
+  </p>
+  <p>
+    Arquivos de provas devem obedecer o formato <code>CODIGO-ANO-PERIODO-PX-INFO</code>. Por exemplo: "INF1007-2008-1-P4-enunciado.pdf". <code>INFO</code> pode qualquer coisa, mas nomes comuns são "Enunciado", "Gabarito", "Turma A-Enunciado", "Tudo".
+  </p>
+  <p>
+    Arquivos que não são de provas (listas, resumos, etc) podem ser enviados com qualquer nome, desde que obedeçam a regra da disciplina. Para fazer uso de um arquivo desse no plano de estudo, use a URL em uma Markdown ling tag, por exemplo: <code>[link](http://google.com)</code>.
+  </p>
+  <p>
+    É possível selecionar vários arquivos de uma vez, ou até mesmo arrastar e soltar (drag and drop).
+  </p>
+
   <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
 <% end %>
 
