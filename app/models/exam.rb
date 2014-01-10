@@ -17,4 +17,8 @@ class Exam < ActiveRecord::Base
   def summary
     "#{self.course.abbreviation}-#{self.year}-#{self.semester}-#{self.p}"
   end
+
+  def year_semester
+    "#{self.year}-#{self.semester}"
+  end
 end

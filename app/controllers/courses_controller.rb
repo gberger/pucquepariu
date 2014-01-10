@@ -12,8 +12,11 @@ class CoursesController < ApplicationController
       redirect_to course_path(params[:id].upcase), status: :moved_permanently
     end
     @course = Course.find_by_abbreviation(params[:id])
-    @semesters = Time.new.year.downto(2000).to_a.product([2, 1])
-    @semesters.shift if Time.new.semester == 1
+
+    max_year = Exam.all.max_by(&:year_semester).year
+    min_year = Exam.all.min_by(&:year_semester).year
+    years = max_year.downto(min_year)
+    @semesters = years.to_a.product([2, 1])
   end
 
   # GET /courses/new
