@@ -1,19 +1,83 @@
-<h1>
-  <%= @course.abbreviation %> - <%= @course.name %>
-  <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
-</h1>
+<div class="row">
+  <div class="col-md-6">
+    <h1>
+      <%= @course.abbreviation %> - <%= @course.name %>
+      <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
+    </h1>
+  </div>
+  <div class="col-md-6">
+    <% if @course.teacher %>
+      <h2>Aulas Particulares</h2>
+      <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
+    <% end %>
+  </div>
+</div>
 
-<% if @course.teacher %>
-  <h2>Professor Particular</h2>
-  <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    Chat e propaganda.
+  </div>
+  <div class="col-md-9">
 
-<% if @course.exams.count > 0 %>
-  <h2>Provas</h2>
-  <p>Existem <%= pluralize(@course.exams.length, 'prova') %>.</p>
-<% end %>
+    <ul class="nav nav-pills">
+      <% if @course.exams.count > 0 %>
+        <li class="active"><a href="#exams" data-toggle="pill"><span class="badge"><%= @course.exams.count %></span> Provas</a></li>
+      <% end %>
+      <% unless @course.study_plan.empty? %>
+        <li class="<%= if @course.exams.count == 0 then ' active' end %>"><a href="#study-plan" data-toggle="pill">Exercícios, resumos etc</a></li>
+      <% end %>
+    </ul>
 
-<% unless @course.study_plan.empty? %>
-  <h2>Plano de Estudos</h2>
-  <%= markdown @course.study_plan %>
-<% end %>
+    <div class="tab-content">
+      <% if @course.exams.count > 0 %>
+        <div class="tab-pane active" id="exams">
+          <br/>
+          <table class="table table-striped table-hover table-bordered exams-table" id="exams-table">
+            <thead>
+            <th>Período</th>
+            <th style="width: 25%">P1</th>
+            <th style="width: 25%">P2</th>
+            <th style="width: 25%">P3</th>
+            <th style="width: 25%">P4</th>
+            </thead>
+            <tbody>
+            <% @semesters.each do |semester| %>
+              <tr>
+                <% exams = @course.exams.select {|e| e[:year] == semester[0] && e[:semester] == semester[1]}
+                   p = {}
+                   p[1] = exams.find {|e| e[:number] == 1}
+                   p[2] = exams.find {|e| e[:number] == 2}
+                   p[3] = exams.find {|e| e[:number] == 3}
+                   p[4] = exams.find {|e| e[:number] == 4}
+                %>
+
+                <td><%= semester.join(' - ') %></td>
+
+                <% p.each do |k, v| %>
+                  <td>
+                    <% if v %>
+                      <% v.study_materials.each do |s| %>
+                        <%= link_to glyph('download') + " #{s.title}", s.content.url, class: 'btn btn-xs btn-success btn-block' %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+
+            <% end %>
+            </tbody>
+          </table>
+
+
+        </div>
+      <% end %>
+
+      <% unless @course.study_plan.empty? %>
+        <div class="tab-pane <%= if @course.exams.count == 0 then ' active' end %>" id="study-plan">
+          <%= markdown @course.study_plan %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
