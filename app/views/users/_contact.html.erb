@@ -1,5 +1,5 @@
-<ul>
-  <li><%= teacher.name %></li>
+<ul class="contact-details">
+  <li><%= fa 'user', fw: true %> <%= teacher.name %></li>
   <li><%= facebook_link_to teacher.nickname %></li>
-  <li><%= mail_to teacher.email %></li>
+  <li><%= mail_to teacher.email, fa('envelope', fw: true) + " #{teacher.email}" %></li>
 </ul>
