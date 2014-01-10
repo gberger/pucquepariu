@@ -23,6 +23,9 @@
     </div>
   </div>
 
+  <% unless @course.new_record? %>
+    <% if can? :delete, @course then %><%= link_to i_delete, @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %><% end %>
+  <% end %>
 
 <% end %>
 

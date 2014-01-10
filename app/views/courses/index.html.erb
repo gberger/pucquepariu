@@ -1,23 +1,33 @@
-<h1>Listing Courses</h1>
-
+<div class="row">
   <% @courses.each do |course| %>
-    <div class="row">
-      <div class="col-md-12 well">
-        <h2>
-          <%= course.abbreviation %> - <%= course.name %>
-        </h2>
-        <ul>
-          <li><%= link_to 'Show', course %></li>
-          <% if can? :edit, course then %> <li><%= link_to 'Edit', edit_course_path(course) %></li> <% end %>
-          <% if can? :delete, course then %> <li><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></li> <% end %>
-        </ul>
+    <div class="col-md-3 div-course">
+      <div class="thumbnail">
+        <div class="course-box <%= course.department_abbreviation %>">
+          <div class="summary">
+            <h2><%= course.abbreviation %></h2>
+            <h3><%= course.name %></h3>
+          </div>
+
+          <%= link_to 'Material', course, class: 'btn btn-default' %>
+          <% if can? :edit, course then %><%= link_to i_edit, edit_course_path(course), class: 'btn btn-success' %><% end %>
+        </div>
       </div>
     </div>
-    </tr>
   <% end %>
 
-<br>
+  <% if can? :create, Course %>
+    <div class="col-md-3 div-course">
+      <div class="thumbnail">
+        <div class="course-box">
+          <div class="summary">
+            <h2>&nbsp;</h2>
+          </div>
 
-<% if can? :create, Course %>
-  <%= link_to i_add, new_course_path, class: 'btn btn-primary' %>
-<% end %>
+          <%= link_to i_add, new_course_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

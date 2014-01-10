@@ -15,3 +15,12 @@
  *= require courses
  *= require users
  */
+
+nav {
+  height: 50px;
+  .logo {
+    height: 40px;
+    position: relative;
+    top: -8px;
+  }
+}
