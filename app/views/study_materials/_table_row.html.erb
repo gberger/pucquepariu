@@ -3,5 +3,6 @@
   <td><%= if study_material.exam then study_material.exam.summary end%></td>
   <td><%= study_material.title %></td>
   <td><%= study_material.content_url %></td>
+  <td><textarea class="form-control">[<%= study_material.title %>](<%= study_material.content.url %>)</textarea></td>
   <td><%= link_to i_delete, study_material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
 </tr>
