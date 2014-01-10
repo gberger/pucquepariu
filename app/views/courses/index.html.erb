@@ -8,10 +8,7 @@
             <h3><%= course.name %></h3>
           </div>
 
-          <%= link_to course, class: 'btn btn-default' do %>
-            Material
-            <span class="div-link"></span>
-          <% end %>
+          <%= link_to div_link('Material'), course, class: 'btn btn-default' %>
           <% if can? :edit, course then %><%= link_to i_edit, edit_course_path(course), class: 'btn btn-success div-link-other' %><% end %>
         </div>
       </div>
@@ -26,7 +23,7 @@
             <h2>&nbsp;</h2>
           </div>
 
-          <%= link_to i_add, new_course_path, class: 'btn btn-primary' %>
+          <%= link_to div_link(i_add), new_course_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>

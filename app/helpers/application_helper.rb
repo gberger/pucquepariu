@@ -24,4 +24,8 @@ module ApplicationHelper
            end
     link_to text, facebook_url_to(username)
   end
+
+  def div_link(text)
+    (text + content_tag(:span, '', class: 'div-link')).html_safe
+  end
 end
