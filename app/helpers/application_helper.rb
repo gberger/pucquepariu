@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def facebook_link_to(username, icon=true)
     text = if icon
-             fa('facebook-square', fw: true) + " #{username}"
+             fa('facebook-square', fw: true) + " /#{username}"
            else
              username
            end
