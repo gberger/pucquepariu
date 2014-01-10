@@ -33,6 +33,7 @@ module IconHelper
     classes = ["fa"]
     classes.concat Private.icon_names(names)
     classes.concat Array(options.delete(:class))
+    classes.push "fa-fw" if options[:fw]
     text = options.delete(:text)
     icon = content_tag(:i, nil, options.merge(:class => classes))
     Private.icon_join(icon, text)
