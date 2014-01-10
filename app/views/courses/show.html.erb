@@ -5,14 +5,14 @@
       <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
     </h1>
   </div>
-  <div class="col-md-6">
-    <div class="well">
-      <% if @course.teacher %>
+  <% if @course.teacher %>
+    <div class="col-md-6">
+      <div class="well">
         <h2 style="margin-top: 5px;">Aulas Particulares</h2>
         <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <div class="row">
