@@ -1,5 +1,12 @@
-<ul class="contact-details">
-  <li><%= fa 'user', fw: true %> <%= teacher.name %></li>
-  <li><%= facebook_link_to teacher.nickname %></li>
-  <li><%= mail_to teacher.email, fa('envelope', fw: true) + " #{teacher.email}" %></li>
-</ul>
+<div class="media">
+  <a class="pull-left" href="<%= facebook_url_to teacher.nickname %>">
+    <img class="media-object img-circle" src="http://graph.facebook.com/<%= teacher.nickname %>/picture?type=normal&width=64&height=64">
+  </a>
+  <div class="media-body">
+    <ul class="contact-details">
+      <li><%= fa 'user', fw: true %> <%= teacher.name %></li>
+      <li><%= facebook_link_to teacher.nickname %></li>
+      <li><%= mail_to teacher.email, fa('envelope', fw: true) + " #{teacher.email}" %></li>
+    </ul>
+  </div>
+</div>

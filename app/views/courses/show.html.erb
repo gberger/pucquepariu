@@ -6,10 +6,12 @@
     </h1>
   </div>
   <div class="col-md-6">
-    <% if @course.teacher %>
-      <h2>Aulas Particulares</h2>
-      <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
-    <% end %>
+    <div class="well">
+      <% if @course.teacher %>
+        <h2 style="margin-top: 5px;">Aulas Particulares</h2>
+        <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
+      <% end %>
+    </div>
   </div>
 </div>
 
