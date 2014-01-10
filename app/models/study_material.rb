@@ -21,9 +21,9 @@ class StudyMaterial < ActiveRecord::Base
 
       self.title = m[5].split('-').select do |str|
         not str.empty?
-      end.join(' - ')
+      end.join(' - ').titleize
     else
-      self.title = parts.drop(1).join('-')
+      self.title = parts.drop(1).join('-').titleize
     end
   end
 end
