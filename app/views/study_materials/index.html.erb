@@ -56,6 +56,8 @@
 </script>
 
 <script>
+  var validAbbreviations = <%= (Course.all.map &:abbreviation).to_s.html_safe %>;
+
   $(function(){
     $('#new_study_material').fileupload({
       dataType: "script",
@@ -63,6 +65,12 @@
 
         if(!/^[A-Z]{3}\d{4}\-/.test(data.files[0].name)){
           alert("Nome do arquivo precisa começar com o código da disciplina e um traço. Exemplo: \"MAT1200-Lista 1.pdf\"");
+          return false;
+        }
+
+        var abbreviation = data.files[0].name.split('-')[0];
+        if(validAbbreviations.indexOf(abbreviation) == -1){
+          alert("Essa disciplina não existe: " + abbreviation);
           return false;
         }
 
