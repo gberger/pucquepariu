@@ -13,3 +13,9 @@ class Array
     n < 0 ? self[0...n] : super
   end
 end
+
+class Time
+  def semester
+    month <= 6 ? 1 : 2
+  end
+end
