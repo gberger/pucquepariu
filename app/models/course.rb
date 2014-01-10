@@ -6,6 +6,8 @@ class Course < ActiveRecord::Base
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false
 
+  default_scope order("abbreviation ASC")
+
   extend FriendlyId
   friendly_id :abbreviation
 
