@@ -1,3 +1,13 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.contact-details {
+  list-style-type: none;
+  padding:0;
+  margin:0;
+  i {
+    color: #000;
+    text-decoration: none;
+  }
+}
