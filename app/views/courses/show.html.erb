@@ -3,11 +3,17 @@
   <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
 </h1>
 
-<h2>Provas</h2>
+<% if @course.teacher %>
+  <h2>Professor Particular</h2>
+  <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
+<% end %>
 
-Existem <%= pluralize(@course.exams.length, 'prova') %>.
+<% if @course.exams.count > 0 %>
+  <h2>Provas</h2>
+  <p>Existem <%= pluralize(@course.exams.length, 'prova') %>.</p>
+<% end %>
 
-<h2>Plano de Estudos</h2>
-
-<%= markdown @course.study_plan %>
-
+<% unless @course.study_plan.empty? %>
+  <h2>Plano de Estudos</h2>
+  <%= markdown @course.study_plan %>
+<% end %>

@@ -1,6 +1,6 @@
 class Exam < ActiveRecord::Base
   belongs_to :course
-  has_many :study_materials
+  has_many :study_materials, dependent: :destroy
 
   # Unique on all columns at the same time
   validates_uniqueness_of :course, scope: [:year, :semester, :number]

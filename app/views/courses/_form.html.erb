@@ -6,6 +6,7 @@
   <%= f.text_field :abbreviation %>
   <%= f.text_field :name %>
   <%= f.number_field :credits %>
+  <%= f.collection_select :teacher_id, User.all, :id, :name, prompt: true %>
 
   <div class="row">
     <div class="col-md-6">
@@ -15,7 +16,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Study plan preview <a target="_blank" href="http://nestacms.com/docs/creating-content/markdown-cheat-sheet"><i class="fa fa-question-circle"></i></a></label>
-        <div class="well" id="sp-preview"></div>
+        <div class="well" id="sp-preview">
+          <%= markdown @course.study_plan %>
+        </div>
       </div>
     </div>
   </div>

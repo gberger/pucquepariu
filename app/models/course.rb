@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
-  has_many :exams
-  has_many :study_materials
+  has_many :exams, dependent: :destroy
+  has_many :study_materials, dependent: :destroy
+  belongs_to :teacher, class_name: "User"
 
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false
