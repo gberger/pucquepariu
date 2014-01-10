@@ -1,3 +1,41 @@
 // Place all the styles related to the static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.controller-static.action-index body {
+  z-index: -1;
+  @media (min-width: 768px) {
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-image: url(https://s3-sa-east-1.amazonaws.com/pucquepariu/assets/pilotis.jpg);
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+    background-origin: padding-box;
+    -webkit-background-origin: padding-box;
+    background-size: cover;
+    -webkit-background-size: cover;
+  }
+  @media (max-width: 767px) {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(119, 134, 145, 1)), color-stop(100%, rgba(115, 105, 67, 1))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(119, 134, 145, 1) 0%, rgba(115, 105, 67, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top, rgba(119, 134, 145, 1) 0%, rgba(115, 105, 67, 1) 100%); /* Opera 11.10+ */
+    background-image: linear-gradient(to bottom, rgba(119, 134, 145, 1) 0%, rgba(115, 105, 67, 1) 100%); /* W3C */
+    background-attachment: fixed;
+  }
+}
+
+.brand-row {
+  padding-bottom: 14px;
+}
+
+.cloudy {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px 20px 20px 20px;
+
+  border-radius: 5px;
+}
+
+.fb-like-box {
+  background-color: white;
+}

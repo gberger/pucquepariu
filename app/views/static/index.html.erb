@@ -1,2 +1,50 @@
-<h1>PUC Que Pariu!</h1>
-<p>Bem-vindo.</p>
+<div class="row brand-row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="cloudy text-center">
+
+      <div>
+        <img src="https://s3-sa-east-1.amazonaws.com/pucquepariu/assets/logo.png" alt="PUC Que Pariu!" class="logo"/>
+      </div>
+
+      <div>
+        <h4>Provas antigas e exercícios de matérias da PUC-Rio!</h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <div class="cloudy">
+      <h2>Novidades</h2>
+
+      <div class="text-cemter">
+        <div class="fb-like-box" data-href="https://www.facebook.com/PUCQuePariu" data-width="400" data-show-faces="false" data-header="false" data-stream="true" data-show-border="true"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-5 col-md-offset-2">
+    <div class="cloudy">
+      <h2>Contato</h2>
+      <p>Olá! Em caso de feedback, dúvidas ou contribuições, entre em contato.</p>
+
+      <%= render partial: 'users/contact', locals: {teacher: {name: 'Guilherme Berger', nickname: 'gberger', email: 'guilherme.berger@gmail.com'}} %>
+
+      <hr>
+
+      <h2>Apoio</h2>
+      <div class="media">
+        <a class="pull-left" href="https://www.facebook.com/daafpucrio" title="DAAF PUC-Rio">
+          <img class="media-object img-circle" src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-prn1/526524_371472946259866_2089217093_n.jpg" alt="DAAF PUC-Rio">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">DAAF PUC-Rio</h4>
+          Diretório Acadêmico de Engenharia
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
