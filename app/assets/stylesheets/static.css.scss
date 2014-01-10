@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.controller-static.action-index body {
+body.controller-static.action-index {
   z-index: -1;
   @media (min-width: 768px) {
     background-repeat: no-repeat;
