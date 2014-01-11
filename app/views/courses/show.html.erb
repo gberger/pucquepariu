@@ -1,16 +1,13 @@
-<div class="row">
+<div class="row well">
   <div class="col-md-6">
     <h1>
       <%= @course.abbreviation %> - <%= @course.name %>
-      <%= if can? :edit, @course then link_to fa('pencil') + ' Edit', edit_course_path(@course), class: "btn btn-success btn-sm" end %>
     </h1>
   </div>
   <% if @course.teacher %>
     <div class="col-md-6">
-      <div class="well">
-        <h2 style="margin-top: 5px;">Aulas Particulares</h2>
-        <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
-      </div>
+      <h2 style="margin-top: 5px;">Aulas Particulares</h2>
+      <%= render partial: 'users/contact', locals: {teacher: @course.teacher} %>
     </div>
   <% end %>
 </div>
@@ -76,6 +73,7 @@
 
       <% unless @course.study_plan.empty? %>
         <div class="tab-pane <%= if @course.exams.count == 0 then ' active' end %>" id="study-plan">
+          <br/>
           <%= markdown @course.study_plan %>
         </div>
       <% end %>
