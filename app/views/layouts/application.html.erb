@@ -34,7 +34,7 @@
           <li class="<%= active_page(controller: :static, action: :index) %>"><a href="/">Home</a></li>
           <li class="<%= active_page(controller: :courses) %>"><a href="/disciplinas">Disciplinas</a></li>
           <% if can? :manage, User %><li class="<%= active_page(controller: :users) %>"><a href="/users">Usuários</a></li> <% end %>
-          <% if can? :manage, StudyMaterial %><li class="<%= active_page(controller: :study_materials) %>"><a href="/study_materials">Material de Estudo</a></li> <% end %>
+          <% if can? :manage, StudyMaterial %><li class="<%= active_page(controller: :study_materials) %>"><a href="/study_materials">Arquivos</a></li> <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
