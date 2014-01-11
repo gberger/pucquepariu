@@ -1,30 +1,36 @@
 <h1>Study Materials</h1>
 
-<p>
-  Todo arquivo deve estar precedido do código de sua <%= link_to 'disciplina', courses_path %> (<%= link_to 'que já exista', new_course_path %>) e um traço.
-  Exemplo: "MAT1200-Lista 1.pdf".
-</p>
-<p>
-  Arquivos de provas devem obedecer o formato <code>CODIGO-ANO-PERIODO-PX-INFO</code>.
-  Por exemplo: "INF1007-2008-1-P4-enunciado.pdf".
-  <code>INFO</code> pode qualquer coisa, mas nomes comuns são "Enunciado", "Gabarito", "Turma A-Enunciado", "Tudo".
-</p>
-<p>
-  Arquivos que não são de provas (listas, resumos, etc) podem ser enviados com qualquer nome, desde que obedeçam a regra da disciplina.
-  Para fazer uso de um arquivo desse no plano de estudo, use o código fornecido na coluna <strong>Markdown</strong>.
-</p>
-<p>
-  É possível selecionar vários arquivos de uma vez, ou até mesmo arrastar e soltar (drag and drop).
-</p>
-
 <div class="panel panel-primary panel-upload">
   <div class="panel-heading">Upload</div>
   <div class="panel-body">
-    <p>
-      <%= form_for StudyMaterial.new do |f| %>
-        <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
-      <% end %>
-    </p>
+    <div class="row">
+      <div class="col-md-3">
+        <%= form_for StudyMaterial.new do |f| %>
+          <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+        <div class="upload-explanation alert alert-info">
+          <p>
+            Todo arquivo deve estar precedido do código de sua <%= link_to 'disciplina', courses_path %> (<%= link_to 'que já deve existir', new_course_path %>) e um traço.
+            Exemplo: "MAT1200-Lista 1.pdf".
+          </p>
+          <p>
+            Arquivos de provas devem obedecer o formato <code>CODIGO-ANO-PERIODO-PX-INFO</code>.
+            Por exemplo: "INF1007-2008-1-P4-enunciado.pdf".
+            <code>INFO</code> pode qualquer coisa, mas nomes comuns são "Enunciado", "Gabarito", "Turma A-Enunciado", "Tudo".
+          </p>
+          <p>
+            Arquivos que não são de provas (listas, resumos, etc) podem ser enviados com qualquer nome, desde que obedeçam a regra da disciplina.
+            Para fazer uso de um arquivo desse no plano de estudo, use o código fornecido na coluna <strong>Markdown</strong>.
+          </p>
+          <p>
+            É possível selecionar vários arquivos de uma vez, ou até mesmo arrastar e soltar (drag and drop).
+          </p>
+        </div>
+
+      </div>
+    </div>
   </div>
   <ul class="list-group"></ul>
 </div>
