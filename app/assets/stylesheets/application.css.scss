@@ -8,21 +8,20 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require bootstrap_and_overrides
  *= require font-awesome
  *= require jquery.fileupload-ui
+ *= require_self
  *= require static
  *= require courses
  *= require users
  */
 
-nav {
-  height: 50px;
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
   .logo {
-    height: 40px;
-    position: relative;
-    top: -8px;
+    height: 50px;
   }
 }
 

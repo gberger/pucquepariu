@@ -16,39 +16,47 @@
 <div class="wrapper" id="wrapper">
 
   <!-- navbar -->
-  <nav class="navbar navbar-fixed-top navbar-default" role="navigation" id="navbar">
+  <div class="navbar navbar-default navbar-static-top" role="navigation" id="navbar">
     <div class="container">
-
       <div class="navbar-header">
-        <a href="/" class="navbar-brand" title="PUC Que Pariu!">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
           <img src="https://s3-sa-east-1.amazonaws.com/pucquepariu/assets/logo.png" alt="PUC Que Pariu!" class="logo" title="PUC Que Pariu!"/>
         </a>
       </div>
-
-      <ul class="nav navbar-nav">
-        <li class="<%= active_page(controller: :static, action: :index) %>"><a href="/">Home</a></li>
-        <li class="<%= active_page(controller: :courses) %>"><a href="/disciplinas">Disciplinas</a></li>
-        <% if can? :manage, User %><li class="<%= active_page(controller: :users) %>"><a href="/users">Usuários</a></li> <% end %>
-        <% if can? :manage, StudyMaterial %><li class="<%= active_page(controller: :study_materials) %>"><a href="/study_materials">Material de Estudo</a></li> <% end %>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-          <li><strong class="navbar-text"><%= current_user.name %></strong></li>
-          <li><%= link_to "Logout", signout_path, id: "sign_out" %></li>
-          <% if current_user.is_admin? %>
-            <li class="navbar-text">Admin</li>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="<%= active_page(controller: :static, action: :index) %>"><a href="/">Home</a></li>
+          <li class="<%= active_page(controller: :courses) %>"><a href="/disciplinas">Disciplinas</a></li>
+          <% if can? :manage, User %><li class="<%= active_page(controller: :users) %>"><a href="/users">Usuários</a></li> <% end %>
+          <% if can? :manage, StudyMaterial %><li class="<%= active_page(controller: :study_materials) %>"><a href="/study_materials">Material de Estudo</a></li> <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li>
+              <strong class="navbar-text">
+                <%= current_user.name %>
+                <% if current_user.is_admin? %>
+                  <%= fa 'star' %>
+                <% end %>
+              </strong>
+            </li>
+            <li><%= link_to "Logout", signout_path, id: "sign_out" %></li>
+          <% else %>
+            <li><a href="/auth/facebook" id="sing_in">Login com Facebook <i class="fa fa-facebook-square"></i></a></li>
           <% end %>
-        <% else %>
-          <li><a href="/auth/facebook" id="sing_in">Login com Facebook <i class="fa fa-facebook-square"></i></a></li>
-        <% end %>
-      </ul>
-
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
-  </nav>
+  </div>
   <!--/navbar -->
 
-  <!-- container -->
+  <!-- main -->
   <div class="container" id="content">
     <div class="content">
       <div class="row">
@@ -62,7 +70,7 @@
     </div>
     <div class="push"></div>
   </div>
-  <!--/container -->
+  <!--/main -->
 
   <!-- footer
   <div class="footer" id="footer">
