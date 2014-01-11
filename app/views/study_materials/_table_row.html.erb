@@ -1,6 +1,6 @@
-<tr>
-  <td><%= link_to study_material.course.name_with_abbreviation, course_path(study_material.course) %></td>
-  <td><%= if study_material.exam then study_material.exam.summary end%></td>
+<tr class="<%= if is_new then 'success' end %>">
+  <td><%= link_to study_material.course.abbreviation, course_path(study_material.course) %></td>
+  <td><%= if study_material.exam then "#{study_material.exam.year}-#{study_material.exam.semester}-#{study_material.exam.p}" end%></td>
   <td><%= study_material.title %></td>
   <td><%= study_material.content_url %></td>
   <td><textarea class="form-control">[<%= study_material.title %>](<%= study_material.content.url %>)</textarea></td>

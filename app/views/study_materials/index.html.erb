@@ -1,6 +1,5 @@
 <h1>Listing Study Materials</h1>
 
-<%= bootstrap_form_for StudyMaterial.new do |f| %>
   <p>
     Todo arquivo deve estar precedido do código de sua <%= link_to 'disciplina', courses_path %> (<%= link_to 'que já exista', new_course_path %>) e um traço.
     Exemplo: "MAT1200-Lista 1.pdf".
@@ -18,12 +17,22 @@
     É possível selecionar vários arquivos de uma vez, ou até mesmo arrastar e soltar (drag and drop).
   </p>
 
-  <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
-<% end %>
+  <div class="panel panel-primary panel-upload">
+    <div class="panel-heading">Upload</div>
+    <div class="panel-body">
+      <p>
+        <%= form_for StudyMaterial.new do |f| %>
+          <%= f.file_field :content, multiple: true, name: 'study_material[content]' %>
+        <% end %>
+      </p>
+    </div>
+    <ul class="list-group">
+    </ul>
+  </div>
 
 <br>
 
-<table class="table" id="study_materials_table">
+<table class="table table-hover table-bordered" id="study_materials_table">
   <thead>
     <tr>
       <th>Disciplina</th>
@@ -37,22 +46,24 @@
 
   <tbody>
     <% @study_materials.each do |study_material| %>
-      <%= render partial: 'table_row', locals: {study_material: study_material} %>
+      <%= render partial: 'table_row', locals: {study_material: study_material, is_new: false} %>
     <% end %>
   </tbody>
 </table>
 
 <script id="template-upload" type="text/x-tmpl">
-  <div class="upload panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{%=o.name%}</h3>
-    </div>
-    <div class="panel-body">
-      <div class="progress progress-striped active">
-        <div class="progress-bar active" role="progressbar" style="width: 0%"></div>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-3">
+        {%=o.name%}
+      </div>
+      <div class="col-md-9">
+        <div class="progress progress-striped active">
+          <div class="progress-bar active" role="progressbar" style="width: 0%"></div>
+        </div>
       </div>
     </div>
-  </div>
+  </li>
 </script>
 
 <script>
@@ -75,7 +86,7 @@
         }
 
         data.context = $(tmpl("template-upload", data.files[0]));
-        $('#new_study_material').append(data.context);
+        $('.panel-upload .list-group').append(data.context);
         data.submit()
       },
       progress: function(e, data){
