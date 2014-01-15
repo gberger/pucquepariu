@@ -8,8 +8,15 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true, no_intra_emphasis: true)
-    md.render(h text).html_safe
+    renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true, no_intra_emphasis: true)
+    html = renderer.render text
+
+    doc = Nokogiri::HTML(html)
+    doc.css('a').each do |a|
+      a["target"] = "_blank"
+    end
+    
+    doc.css('body').to_s.html_safe
   end
 
   def facebook_url_to(username)
