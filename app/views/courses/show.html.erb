@@ -40,19 +40,11 @@
             <th style="width: 25%">P4</th>
             </thead>
             <tbody>
-            <% @semesters.each do |semester| %>
+            <% @semesters_exams.each_pair do |semester, exams| %>
               <tr>
-                <% exams = @course.exams.select {|e| e[:year] == semester[0] && e[:semester] == semester[1]}
-                   p = {}
-                   p[1] = exams.find {|e| e[:number] == 1}
-                   p[2] = exams.find {|e| e[:number] == 2}
-                   p[3] = exams.find {|e| e[:number] == 3}
-                   p[4] = exams.find {|e| e[:number] == 4}
-                %>
+                <td><%= semester %></td>
 
-                <td><%= semester.join(' - ') %></td>
-
-                <% p.each do |k, v| %>
+                <% exams.each_pair do |k, v| %>
                   <td>
                     <% if v %>
                       <% v.study_materials.each do |s| %>

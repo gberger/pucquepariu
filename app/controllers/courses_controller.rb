@@ -16,7 +16,20 @@ class CoursesController < ApplicationController
     max_year = Exam.all.max_by(&:year_semester).year
     min_year = Exam.all.min_by(&:year_semester).year
     years = max_year.downto(min_year)
-    @semesters = years.to_a.product([2, 1])
+    semesters = years.to_a.product([2, 1])
+
+    # TODO spaghetti
+    @semesters_exams = semesters.reduce({}) do |h, semester|
+      exams = @course.exams.select do |e|
+      e[:year] == semester[0] && e[:semester] == semester[1]
+      end
+      a = {}
+      (1..4).each do |num|
+       a[num] = exams.find {|e| e[:number] == num }
+      end
+      h[semester.join(' - ')] = a
+      h
+    end
   end
 
   # GET /courses/new
