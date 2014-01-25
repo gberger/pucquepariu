@@ -1,6 +1,6 @@
 module IconHelper
   def glyph(*names)
-    content_tag :i, nil, class: ["glyphicon"] + names.map{|name| "glyphicon-#{name.to_s.gsub('_','-')}" } + ' '
+    content_tag(:i, nil, class: ["glyphicon"] + names.map{|name| "glyphicon-#{name.to_s.gsub('_','-')}" }) + ' '
   end
 
   # Creates an icon tag given an icon name and possible icon
