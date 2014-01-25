@@ -1,6 +1,6 @@
 module IconHelper
   def glyph(*names)
-    content_tag :i, nil, class: ["glyphicon"] + names.map{|name| "glyphicon-#{name.to_s.gsub('_','-')}" } + ' '
+    content_tag :i, nil, class: ["glyphicon"] + names.map{|name| "glyphicon-#{name.to_s.gsub('_','-')}" }
   end
 
   # Creates an icon tag given an icon name and possible icon
@@ -36,7 +36,7 @@ module IconHelper
     classes.push "fa-fw" if options[:fw]
     text = options.delete(:text)
     icon = content_tag(:i, nil, options.merge(:class => classes))
-    Private.icon_join(icon, text) + ' '
+    Private.icon_join(icon, text)
   end
 
   # Creates an stack set of icon tags given a base icon name, a main icon
