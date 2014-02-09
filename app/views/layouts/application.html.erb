@@ -23,8 +23,8 @@
   <link rel="apple-touch-icon" sizes="114x114" href="https://pucquepariu.s3.amazonaws.com/assets/logo-114.png" />
   <link rel="apple-touch-icon" sizes="144x144" href="https://pucquepariu.s3.amazonaws.com/assets/logo-144.png" />
 
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= stylesheet_link_tag controller_name, media: "all" %>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
@@ -104,5 +104,8 @@
 
 </div>
 
+<%= javascript_include_tag "application" %>
+<%= javascript_include_tag controller_name %>
+<%= yield(:bottom) %>
 </body>
 </html>
