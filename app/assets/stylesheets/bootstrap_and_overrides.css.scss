@@ -8,3 +8,9 @@
 .navbar-static-top {
   margin-bottom: 19px;
 }
+
+.dataTables_filter, .dataTables_length {
+  input, select {
+    @extend .form-control;
+  }
+}
