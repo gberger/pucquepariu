@@ -46,10 +46,17 @@
     }
   }
 
-  &.FIS, &.ENG {
+  &.FIS {
     background-color: #2ECC71;
     &:hover, &:active {
       background-color: #27AE60;
+    }
+  }
+  
+  &.ENG {
+    background-color: #9B59B6;
+    &:hover, &:active {
+      background-color: #8E44AD;
     }
   }
 
