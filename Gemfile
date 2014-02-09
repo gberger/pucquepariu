@@ -19,7 +19,6 @@ gem 'bootstrap_form'
 gem 'jquery-fileupload-rails'
 
 gem 'jquery-rails'
-gem 'turbolinks'
 
 gem 'friendly_id'
 
