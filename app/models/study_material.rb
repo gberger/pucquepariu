@@ -6,6 +6,8 @@ class StudyMaterial < ActiveRecord::Base
 
   mount_uploader :content, ContentUploader
 
+  scope :ordered, joins: :course, order: "courses.abbreviation"
+
   def parse_filename(filename)
     filename_without_extension = filename.split('.').drop(-1).join('.')
     parts = filename_without_extension.split('-')

@@ -3,7 +3,7 @@ class StudyMaterialsController < ApplicationController
 
   # GET /study_materials
   def index
-    @study_materials = StudyMaterial.all
+    @study_materials = StudyMaterial.ordered
   end
 
   # POST /study_materials
