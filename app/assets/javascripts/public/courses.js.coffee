@@ -15,11 +15,11 @@ $nothing = $("#nothing")
 socket.on "broadcast-message", (data) ->
 	timestamp = +new Date()
 	$nothing.remove()
-	$line = """
+	$line = $("""
 					<li class="list-group-item timestamp" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="#{timestamp}">
 						<strong class="name">#{data.name}</strong>: <span class="msg">#{data.msg}</span>
 					</li>
-					"""
+					""")
 	$lg.append $line
 	updateTimestamps()
 	$line.tooltip()
