@@ -1,0 +1,31 @@
+/*
+ *= require public/bootstrap_and_overrides.css.scss
+ *= require font-awesome
+ *= require jquery.fileupload-ui
+ *= require_self
+ *= require_directory ./public
+ */
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  .logo {
+    height: 50px;
+  }
+}
+
+// Make a div behave as a link
+.div-link {
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  z-index: 1;
+  background-image: url('/empty.gif');
+}
+
+.div-link-other {
+  position: relative;
+  z-index: 2;
+}
