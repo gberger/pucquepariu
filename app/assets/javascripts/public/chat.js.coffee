@@ -52,4 +52,4 @@ template = """
 -        		</li>
 """
 
-window.chat = new Chat(url, element, abbreviation, template)
+window.chat = new Chat(element, url, abbreviation, template)
