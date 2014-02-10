@@ -12,7 +12,7 @@ setInterval updateTimestamps, 1000
 
 $lg = $(".list-group")
 $nothing = $("#nothing")
-socket.on "broadcast-message", (data) ->
+socket.on "broadcast-message-#{course_abbreviation}", (data) ->
 	timestamp = +new Date()
 	$nothing.remove()
 	$line = $("""
@@ -26,8 +26,9 @@ socket.on "broadcast-message", (data) ->
 
 $("#chat-form").on "submit", ->
 	data =
-		name: $('#current_user_name').text()
+		name: username
 		msg: $("#msg").val()
+		course_abbreviation: course_abbreviation
 
 	$("#msg").val ""
 	return false unless data.msg
