@@ -19,7 +19,7 @@ class Chat
 			$el.attr 'title', moment($el.data("timestamp")).fromNow()
 
 	bindEvents: =>
-		setInterval updateTimestamps, 1000
+		setInterval @updateTimestamps, 1000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
 		@socket.on "broadcast-message-#{@abbreviation}", @messageReceiveHandler
 
