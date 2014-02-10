@@ -61,9 +61,7 @@
           <% if current_user %>
             <li>
               <strong class="navbar-text">
-                <span id="current_user_name">
-                  <%= current_user.name %>
-                </span>
+                <span id="current_user_name"><%= current_user.name %></span>
                 <% if current_user.is_admin? %>
                   <%= fa 'star' %>
                 <% end %>
