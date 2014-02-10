@@ -23,6 +23,7 @@ socket.on "broadcast-message-#{course_abbreviation}", (data) ->
 	$line.find('.name').text(data.name)
 	$line.find('.msg').text(data.msg)
 	$lg.append $line
+	$lg.scrollTop($lg[0].scrollHeight)
 	updateTimestamps()
 	$line.tooltip()
 
