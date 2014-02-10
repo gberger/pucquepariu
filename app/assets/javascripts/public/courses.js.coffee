@@ -17,9 +17,11 @@ socket.on "broadcast-message-#{course_abbreviation}", (data) ->
 	$nothing.remove()
 	$line = $("""
 					<li class="list-group-item timestamp" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="#{timestamp}">
-						<strong class="name">#{data.name}</strong>: <span class="msg">#{data.msg}</span>
+						<strong class="name"></strong>: <span class="msg"></span>
 					</li>
 					""")
+	$line.find('.name').text(data.name)
+	$line.find('.msg').text(data.msg)
 	$lg.append $line
 	updateTimestamps()
 	$line.tooltip()
