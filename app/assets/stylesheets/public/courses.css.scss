@@ -76,3 +76,10 @@
     margin: 0 0 0 0;
   }
 }
+
+#chat {
+  .messages {
+    max-height: 300px;
+    overflow: auto;
+  }
+}
