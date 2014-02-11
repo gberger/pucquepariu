@@ -26,7 +26,7 @@ class Chat
 	messageSubmitHandler: (evt) =>
 		data =
 			msg: @element.find('.chat-form .chat-msg-input').popVal()
-			name: username
+			oauth_token: oauth_token
 			course_abbreviation: @abbreviation
 
 		return false unless data.msg
