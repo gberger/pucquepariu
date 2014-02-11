@@ -27,7 +27,7 @@ class Chat
 		data =
 			msg: @element.find('.chat-form .chat-msg-input').popVal()
 			oauth_token: oauth_token
-			course_abbreviation: @abbreviation
+			course: @abbreviation
 
 		return false unless data.msg
 		@socket.emit 'send-message', data
