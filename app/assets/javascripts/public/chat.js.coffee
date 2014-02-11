@@ -35,7 +35,7 @@ class Chat
 
 	blockChat: (seconds) =>
 		@element.find('form input').disable()
-		setTimeout ->
+		setTimeout =>
 			@element.find('form input').enable()
 		, seconds * 1000
 
@@ -47,7 +47,7 @@ class Chat
 
 		return false unless data.msg
 		@socket.emit 'send-message', data
-		@blockChat(2)
+		@blockChat(1)
 		return false
 
 	messageReceiveHandler: (data) =>
