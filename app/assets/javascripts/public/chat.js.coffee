@@ -9,9 +9,10 @@ $.fn.popVal = ->
 	return val
 
 class Chat
-	constructor: (@element, @url, @abbreviation, @template) ->
+	constructor: (@element, @url, @course, @template) ->
 		@socket = io.connect(@url)
 		@bindEvents()
+		@requestRecent()
 
 	updateTimestamps: =>
 		@element.find(".timestamp").each (i, el) ->
@@ -21,13 +22,16 @@ class Chat
 	bindEvents: =>
 		setInterval @updateTimestamps, 1000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
-		@socket.on "broadcast-message-#{@abbreviation}", @messageReceiveHandler
+		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
+
+	requestRecent: =>
+		@socket.emit 'request-recent', course: @course
 
 	messageSubmitHandler: (evt) =>
 		data =
 			msg: @element.find('.chat-form .chat-msg-input').popVal()
 			oauth_token: oauth_token
-			course: @abbreviation
+			course: @course
 
 		return false unless data.msg
 		@socket.emit 'send-message', data
@@ -45,11 +49,11 @@ class Chat
 
 url = 'https://pqp-chat.herokuapp.com'
 element = $('.chat')
-abbreviation = course_abbreviation
+course = window.course
 template = """
 						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}">
         	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
         		</li>
 """
 
-window.chat = new Chat(element, url, abbreviation, template)
+window.chat = new Chat(element, url, course, template)
