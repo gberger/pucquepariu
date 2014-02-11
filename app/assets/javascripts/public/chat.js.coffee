@@ -2,6 +2,9 @@
 #= require mustache
 #= require moment
 
+$.fn.scrollDown = ->
+	$(this).scrollTop(this.prop('scrollHeight'))
+
 $.fn.popVal = ->
 	$this = $(this)
 	val = $this.val()
@@ -61,6 +64,7 @@ class Chat
 		$lg.append($line)
 		@updateTimestamps()
 		$line.tooltip()
+		@element.find('.chat-messages').scrollDown()
 
 url = 'https://pqp-chat.herokuapp.com'
 element = $('.chat')
