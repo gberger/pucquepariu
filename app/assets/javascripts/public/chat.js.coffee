@@ -8,6 +8,12 @@ $.fn.popVal = ->
 	$this.val('')
 	return val
 
+$.fn.disable = ->
+	$(this).attr('disabled', true)
+
+$.fn.enable = ->
+	$(this).attr('disabled', false)
+
 class Chat
 	constructor: (@element, @url, @course, @template) ->
 		@socket = io.connect(@url)
@@ -27,6 +33,12 @@ class Chat
 	requestRecent: =>
 		@socket.emit 'request-recent', course: @course
 
+	blockChat: (seconds) =>
+		@element.find('form input').disable()
+		setTimeout ->
+			@element.find('form input').enable()
+		, seconds * 1000
+
 	messageSubmitHandler: (evt) =>
 		data =
 			msg: @element.find('.chat-form .chat-msg-input').popVal()
@@ -35,6 +47,7 @@ class Chat
 
 		return false unless data.msg
 		@socket.emit 'send-message', data
+		@blockChat(2)
 		return false
 
 	messageReceiveHandler: (data) =>
