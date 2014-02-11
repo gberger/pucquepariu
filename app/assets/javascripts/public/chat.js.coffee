@@ -48,8 +48,8 @@ element = $('.chat')
 abbreviation = course_abbreviation
 template = """
 						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}">
--        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
--        		</li>
+        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
+        		</li>
 """
 
 window.chat = new Chat(element, url, abbreviation, template)
