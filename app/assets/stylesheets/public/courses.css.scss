@@ -77,8 +77,8 @@
   }
 }
 
-#chat {
-  .messages {
+.chat {
+  .chat-messages {
     max-height: 300px;
     overflow: auto;
   }
