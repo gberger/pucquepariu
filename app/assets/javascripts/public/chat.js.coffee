@@ -37,6 +37,9 @@ class Chat
 		@element.find('form input').disable()
 		setTimeout =>
 			@element.find('form input').enable()
+			setTimeout =>
+				@element.find('.chat-msg-input').focus()
+			, 1
 		, seconds * 1000
 
 	messageSubmitHandler: (evt) =>
