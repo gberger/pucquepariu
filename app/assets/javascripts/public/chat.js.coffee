@@ -40,7 +40,6 @@ class Chat
 	messageReceiveHandler: (data) =>
 		$lg = @element.find('.chat-messages')
 		$lg.find('.no-messages-placeholder').remove()
-		data.timestamp = +new Date()
 
 		$line = $(Mustache.render(@template, data))
 		$lg.append($line)
