@@ -30,7 +30,7 @@ class Chat
 			course_abbreviation: @abbreviation
 
 		return false unless data.msg
-		socket.emit 'send-message', data
+		@socket.emit 'send-message', data
 		return false
 
 	messageReceiveHandler: (data) =>
