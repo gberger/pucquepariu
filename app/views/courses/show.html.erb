@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-3">
-    <%= render partial: 'courses/chat', locals: {course: @course, user: current_user} if current_user && current_user.is_admin? %>
+    <%= render partial: 'courses/chat', locals: {course: @course, current_user: current_user} %>
   </div>
   <div class="col-md-9">
 

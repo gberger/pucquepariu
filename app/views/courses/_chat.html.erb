@@ -4,6 +4,7 @@
     <li class="list-group-item no-messages-placeholder">Não há mensagens.</li>
   </ul>
   <div class="panel-footer">
+    <% if current_user %>
     <form class="chat-form">
       <div class="input-group">
         <input type="text" class="form-control chat-msg-input">
@@ -12,10 +13,16 @@
         </span>
       </div>
     </form>
+    <% else %>
+      Faça <a href="/auth/facebook" id="sing_in">login com Facebook <i class="fa fa-facebook-square"></i></a> para participar do chat!
+    <% end %>
   </div>
 </div>
 
 <script>
-  var oauth_token = '<%= j user.oauth_token %>';
+  <% if current_user %>
+    var is_admin = <%= current_user.is_admin? %>;
+    var oauth_token = '<%= j current_user.oauth_token %>';
+  <% end %>
   var course = '<%= j course.abbreviation %>';
 </script>
