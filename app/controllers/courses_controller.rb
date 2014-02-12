@@ -13,6 +13,8 @@ class CoursesController < ApplicationController
     end
     @course = Course.find_by_abbreviation(params[:id])
 
+    @ad = @course.course_ads.sample
+
     return if @course.exams.empty?
 
     max_year = @course.exams.max_by(&:year_semester).year
