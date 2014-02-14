@@ -1,5 +1,3 @@
-<script src="/assets/javascripts/markdown.min.js"></script>
-
 <%= bootstrap_form_for(@course) do |f| %>
   <%= render partial: 'layouts/validation_errors', locals: {errors: @course.errors} %>
 
@@ -29,66 +27,69 @@
 
 <% end %>
 
-<script>
-  $(document).ready(function(){
-    var old_input = $('#sp-input').val();
-    setInterval(function(){
-      var input = $('#sp-input').val();
-      if(input != old_input){
-        old_input = input;
-        $('#sp-preview').html(markdown.toHTML(input));
-      }
-    }, 500)
+<% content_for :bottom do %>
+  <script src="/assets/javascripts/markdown.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var old_input = $('#sp-input').val();
+      setInterval(function(){
+        var input = $('#sp-input').val();
+        if(input != old_input){
+          old_input = input;
+          $('#sp-preview').html(markdown.toHTML(input));
+        }
+      }, 500)
 
-    $('.markdown-help').tooltip({placement: 'top'}).on('click', function(){
-      var val = $('#sp-input').val() + "\n\n" + "# Título\n"+
-        "\n"+
-        "## Subtítulo\n"+
-        "\n"+
-        "### Subsubtítulo ...\n"+
-        "\n"+
-        "Parágrafos devem ser separados por uma linha em branco.\n"+
-        "\n"+
-        "Assim você faz *itálico* e **negrito**. Assim é código: `int main void(){}`\n"+
-        "\n"+
-        "    int main void(){\n"+
-        "      // Se você botar 4 espaços no começo da linha, faz um bloco de código.\n"+
-        "      return 0;\n"+
-        "    }\n"+
-        "\n"+
-        "Um [link](http://example.com) tem um texto entre [], e a URL entre ().\n"+
-        "\n"+
-        "> Essa é uma citação.\n"+
-        ">> Dá até para aninhar citações.\n"+
-        "\n"+
-        "Lista de bolinhas:\n"+
-        "\n"+
-        "  * apples\n"+
-        "  * oranges\n"+
-        "  * pears\n"+
-        "\n"+
-        "Lista de números:\n"+
-        "\n"+
-        "  1. apples\n"+
-        "  2. oranges\n"+
-        "  3. pears\n"+
-        "\n"+
-        "Uma linha horizontal:\n"+
-        "\n"+
-        "-----\n"+
-        "\n"+
-        "(Tabelas não funcionam no preview).  \n"+
-        "O alinhamento de cada coluna depende do `:`.  \n"+
-        "\n"+
-        "| Left align | Center align | Right align |\n"+
-        "|:-----------|:------------:|------------:|\n"+
-        "| This       |        This |     This     \n"+
-        "| column     |      column |    column    \n"+
-        "| will       |        will |     will     \n"+
-        "| be         |          be |      be      \n"+
-        "| left       |       center |    right    \n"+
-        "| aligned    |     aligned |   aligned\n";
-      $('#sp-input').val(val);
+      $('.markdown-help').tooltip({placement: 'top'}).on('click', function(){
+        var val = $('#sp-input').val() + "\n\n" + "# Título\n"+
+          "\n"+
+          "## Subtítulo\n"+
+          "\n"+
+          "### Subsubtítulo ...\n"+
+          "\n"+
+          "Parágrafos devem ser separados por uma linha em branco.\n"+
+          "\n"+
+          "Assim você faz *itálico* e **negrito**. Assim é código: `int main void(){}`\n"+
+          "\n"+
+          "    int main void(){\n"+
+          "      // Se você botar 4 espaços no começo da linha, faz um bloco de código.\n"+
+          "      return 0;\n"+
+          "    }\n"+
+          "\n"+
+          "Um [link](http://example.com) tem um texto entre [], e a URL entre ().\n"+
+          "\n"+
+          "> Essa é uma citação.\n"+
+          ">> Dá até para aninhar citações.\n"+
+          "\n"+
+          "Lista de bolinhas:\n"+
+          "\n"+
+          "  * apples\n"+
+          "  * oranges\n"+
+          "  * pears\n"+
+          "\n"+
+          "Lista de números:\n"+
+          "\n"+
+          "  1. apples\n"+
+          "  2. oranges\n"+
+          "  3. pears\n"+
+          "\n"+
+          "Uma linha horizontal:\n"+
+          "\n"+
+          "-----\n"+
+          "\n"+
+          "(Tabelas não funcionam no preview).  \n"+
+          "O alinhamento de cada coluna depende do `:`.  \n"+
+          "\n"+
+          "| Left align | Center align | Right align |\n"+
+          "|:-----------|:------------:|------------:|\n"+
+          "| This       |        This |     This     \n"+
+          "| column     |      column |    column    \n"+
+          "| will       |        will |     will     \n"+
+          "| be         |          be |      be      \n"+
+          "| left       |       center |    right    \n"+
+          "| aligned    |     aligned |   aligned\n";
+        $('#sp-input').val(val);
+      })
     })
-  })
-</script>
+  </script>
+<% end %>
