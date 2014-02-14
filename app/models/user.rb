@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  default_scope order('id ASC')
+  has_many :chat_messages
 
+  default_scope order('id ASC')
   scope :admin, -> { where(is_admin: true) }
 
   def self.from_omniauth(auth)
