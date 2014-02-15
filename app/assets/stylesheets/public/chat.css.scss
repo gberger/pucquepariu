@@ -1,8 +1,14 @@
 .chat {
   &.admin {
-    .chat-item:hover .chat-remove {
-      margin-top: 3px;
-      display: inline !important;
+    .chat-item:hover {
+      position: relative;
+      .chat-remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        margin-top: 3px;
+        display: inline !important;
+      }
     }
   }
 }
