@@ -1,4 +1,4 @@
-<div class="panel panel-primary chat <%= current_user.is_admin? ? 'admin' : '' %>" id="chat">
+<div class="panel panel-primary chat <%= current_user && current_user.is_admin? ? 'admin' : '' %>" id="chat">
   <div class="panel-heading">Chat de <%= course.abbreviation %></div>
   <ul class="list-group chat-messages">
     <% if recent_messages.empty? %>
