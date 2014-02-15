@@ -33,9 +33,6 @@ class Chat
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
 		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
 		@socket.on "broadcast-delete-message", @deleteMessageHandler
-		setTimeout =>
-			@element.find('.no-messages-placeholder').text('Não há mensagens ainda. Seja o primeiro!')
-		, 5000
 
 	blockChat: (seconds) =>
 		btn = @element.find('.chat-send').disable()

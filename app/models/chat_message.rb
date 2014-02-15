@@ -7,4 +7,8 @@ class ChatMessage < ActiveRecord::Base
   def as_json(options)
     {course: course.abbreviation, name: user.name, msg: text, timestamp: created_at.ms, id: id}
   end
+
+  def timestamp
+    created_at.ms
+  end
 end

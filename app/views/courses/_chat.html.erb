@@ -1,7 +1,14 @@
 <div class="panel panel-primary chat" id="chat">
   <div class="panel-heading">Chat de <%= course.abbreviation %></div>
   <ul class="list-group chat-messages">
-    <li class="list-group-item no-messages-placeholder">Carregando...</li>
+    <% if recent_messages.empty? %>
+      <li class="list-group-item no-messages-placeholder">Não há mensagens ainda. Seja o primeiro!</li>
+    <% end %>
+    <% recent_messages.each do |message| %>
+      <li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="<%= message.timestamp %>" data-id="<%= message.id %>">
+        <strong class="chat-name"><%= message.user.name %></strong>: <span class="chat-msg"><%= message.text %></span> <i class="glyphicon glyphicon-remove-circle hide chat-remove" data-id="<%= message.id %>"></i>
+      </li>
+    <% end %>
   </ul>
   <div class="panel-footer">
     <% if current_user %>
@@ -26,14 +33,8 @@
       var oauth_token = '<%= j current_user.oauth_token %>';
     <% end %>
     var course = '<%= j course.abbreviation %>';
-    var recentMessages = <%= raw recent_messages.to_json %>;
 
     var chat = new Chat(element, url, course, template)
-
-    var message, i;
-    for (i = recentMessages.length - 1; i >= 0; i -= 1) {
-      window.chat.messageReceiveHandler(recentMessages[i]);
-    }
 
   </script>
 <% end %>
