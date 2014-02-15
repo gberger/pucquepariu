@@ -32,6 +32,7 @@ class Chat
 		setInterval @updateTimestamps, 23000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
 		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
+		@socket.on "broadcast-delete-message", @deleteMessageHandler
 		setTimeout =>
 			@element.find('.no-messages-placeholder').text('Não há mensagens ainda. Seja o primeiro!')
 		, 5000
@@ -68,6 +69,17 @@ class Chat
 		unless @hasRemovedPlaceholder
 			@element.find('.no-messages-placeholder').remove()
 			@hasRemovedPlaceholder = true
+
+	adminDeleteMessage: (el) =>
+		id = $(el).data('id')
+		@socket.emit 'delete-message',
+			oauth_token: oauth_token
+			id: id
+
+	deleteMessageHandler: (data) =>
+		id = data.id
+		@element.find("[data-id=#{id}]").remove()
+
 
 window.url = 'https://pqp-chat.herokuapp.com'
 window.element = $('.chat')
