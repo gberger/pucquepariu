@@ -22,6 +22,7 @@ class Chat
 		@socket = io.connect(@url)
 		@hasRemovedPlaceholder = false
 		@bindEvents()
+		@element.find('.chat-messages').scrollDown()
 
 	updateTimestamps: =>
 		@element.find(".timestamp").each (i, el) ->
