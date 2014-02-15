@@ -20,8 +20,8 @@ $.fn.enable = ->
 class Chat
 	constructor: (@element, @url, @course, @template) ->
 		@socket = io.connect(@url)
+		@hasRemovedPlaceholder = false
 		@bindEvents()
-		@requestRecent()
 
 	updateTimestamps: =>
 		@element.find(".timestamp").each (i, el) ->
@@ -32,12 +32,9 @@ class Chat
 		setInterval @updateTimestamps, 1000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
 		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
-		setInterval ->
+		setTimeout ->
 			@element.find('.no-messages-placeholder').text('Não há mensagens ainda. Seja o primeiro!')
 		, 5000
-
-	requestRecent: =>
-		@socket.emit 'request-recent', course: @course
 
 	blockChat: (seconds) =>
 		@element.find('form input').disable()
@@ -50,7 +47,7 @@ class Chat
 
 	messageSubmitHandler: (evt) =>
 		data =
-			msg: @element.find('.chat-form .chat-msg-input').popVal()
+			msg: @element.find('.chat-form .chat-msg-input').popVal().slice(0, 512)
 			oauth_token: oauth_token
 			course: @course
 
@@ -59,15 +56,20 @@ class Chat
 		@blockChat(1)
 		return false
 
-	messageReceiveHandler: (data) =>
+	messageReceiveHandler: (message) =>
 		$lg = @element.find('.chat-messages')
-		$lg.find('.no-messages-placeholder').remove()
+		@removePlaceholder()
 
-		$line = $(Mustache.render(@template, data))
+		$line = $(Mustache.render(@template, message))
 		$lg.append($line)
 		@updateTimestamps()
 		$line.tooltip()
-		@element.find('.chat-messages').scrollDown()
+		$lg.scrollDown()
+
+	removePlaceholder: =>
+		unless @hasRemovedPlaceholder
+			@element.find('.no-messages-placeholder').remove()
+			@hasRemovedPlaceholder = true
 
 url = 'https://pqp-chat.herokuapp.com'
 element = $('.chat')
@@ -79,3 +81,6 @@ template = """
 """
 
 window.chat = new Chat(element, url, course, template)
+
+for message in recentMessages by -1
+	window.chat.messageReceiveHandler(message)

@@ -7,7 +7,7 @@
     <% if current_user %>
     <form class="chat-form">
       <div class="input-group">
-        <input type="text" class="form-control chat-msg-input">
+        <input type="text" class="form-control chat-msg-input" maxlength="512">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-success" value="»"/>
         </span>
@@ -21,8 +21,9 @@
 
 <script>
   <% if current_user %>
-    var is_admin = <%= current_user.is_admin? %>;
+    var isAdmin = <%= current_user.is_admin? %>;
     var oauth_token = '<%= j current_user.oauth_token %>';
   <% end %>
   var course = '<%= j course.abbreviation %>';
+  var recentMessages = <%= raw recent_messages.to_json %>;
 </script>
