@@ -6,7 +6,7 @@
     <% end %>
     <% recent_messages.reverse_each do |message| %>
       <li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="<%= message.timestamp %>" data-id="<%= message.id %>">
-        <strong class="chat-name"><%= message.user.name %></strong>: <span class="chat-msg"><%= message.text %></span> <i class="glyphicon glyphicon-remove-circle hide chat-remove" data-id="<%= message.id %>"></i>
+        <strong class="chat-name"><%= message.user.name %></strong>: <span class="chat-msg"><%= message.text %></span> <i class="glyphicon glyphicon-remove-circle hide chat-remove pull-right" data-id="<%= message.id %>"></i>
       </li>
     <% end %>
   </ul>

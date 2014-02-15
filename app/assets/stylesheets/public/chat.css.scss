@@ -1,6 +1,7 @@
 .chat {
   &.admin {
     .chat-item:hover .chat-remove {
+      margin-top: 3px;
       display: inline !important;
     }
   }
