@@ -31,6 +31,7 @@ class Chat
 	bindEvents: =>
 		setInterval @updateTimestamps, 23000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
+		@element.find('.chat-remove').on 'click', @adminDeleteMessage
 		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
 		@socket.on "broadcast-delete-message", @deleteMessageHandler
 
@@ -57,6 +58,7 @@ class Chat
 		@removePlaceholder()
 
 		$line = $(Mustache.render(@template, message))
+		$line.find('.chat-remove').on 'click', @adminDeleteMessage
 		$lg.append($line)
 		@updateTimestamps()
 		$line.tooltip()
@@ -67,11 +69,12 @@ class Chat
 			@element.find('.no-messages-placeholder').remove()
 			@hasRemovedPlaceholder = true
 
-	adminDeleteMessage: (el) =>
-		id = $(el).data('id')
-		@socket.emit 'delete-message',
-			oauth_token: oauth_token
-			id: id
+	adminDeleteMessage: (evt) =>
+		if confirm("Deseja deletar a mensagem?")
+			id = $(evt.target).data('id')
+			@socket.emit 'delete-message',
+				oauth_token: oauth_token
+				id: id
 
 	deleteMessageHandler: (data) =>
 		id = data.id
@@ -82,7 +85,7 @@ window.url = 'https://pqp-chat.herokuapp.com'
 window.element = $('.chat')
 window.template = """
 						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}" data-id="{{id}}">
-        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
+        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span> <i class="glyphicon glyphicon-remove-circle hide chat-remove" data-id="{{id}}"></i>
         		</li>
 """
 
