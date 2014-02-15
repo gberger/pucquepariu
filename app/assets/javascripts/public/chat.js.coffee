@@ -79,8 +79,3 @@ template = """
         	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
         		</li>
 """
-
-window.chat = new Chat(element, url, course, template)
-
-for message in recentMessages by -1
-	window.chat.messageReceiveHandler(message)

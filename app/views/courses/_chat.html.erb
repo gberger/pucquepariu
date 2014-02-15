@@ -19,11 +19,21 @@
   </div>
 </div>
 
-<script>
-  <% if current_user %>
-    var isAdmin = <%= current_user.is_admin? %>;
-    var oauth_token = '<%= j current_user.oauth_token %>';
-  <% end %>
-  var course = '<%= j course.abbreviation %>';
-  var recentMessages = <%= raw recent_messages.to_json %>;
-</script>
+<% content_for :bottom do %>
+  <script>
+    <% if current_user %>
+      var isAdmin = <%= current_user.is_admin? %>;
+      var oauth_token = '<%= j current_user.oauth_token %>';
+    <% end %>
+    var course = '<%= j course.abbreviation %>';
+    var recentMessages = <%= raw recent_messages.to_json %>;
+
+    var chat = new Chat(element, url, course, template)
+
+    var message, i;
+    for (i = recentMessages.length - 1; i >= 0; i -= 1) {
+      window.chat.messageReceiveHandler(recentMessages[i]);
+    }
+
+  </script>
+<% end %>
