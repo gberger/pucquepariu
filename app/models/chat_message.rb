@@ -5,6 +5,6 @@ class ChatMessage < ActiveRecord::Base
   validates :text, length: {minimum: 1, maximum: 512}
 
   def as_json(options)
-    {course: course.abbreviation, name: user.name, msg: text}
+    {course: course.abbreviation, name: user.name, msg: text, timestamp: created_at.ms}
   end
 end

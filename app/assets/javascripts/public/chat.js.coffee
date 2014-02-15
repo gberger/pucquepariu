@@ -26,7 +26,7 @@ class Chat
 	updateTimestamps: =>
 		@element.find(".timestamp").each (i, el) ->
 			$el = $(el)
-			$el.attr 'title', moment($el.data("timestamp")).fromNow()
+			$el.attr('title', moment($el.data("timestamp")).fromNow()).tooltip('fixTitle')
 
 	bindEvents: =>
 		setInterval @updateTimestamps, 1000
@@ -37,17 +37,15 @@ class Chat
 		, 5000
 
 	blockChat: (seconds) =>
-		@element.find('form input').disable()
+		btn = @element.find('.chat-send').disable()
+		input = @element.find('chat-msg-input')
 		setTimeout =>
-			@element.find('form input').enable()
-			setTimeout =>
-				@element.find('.chat-msg-input').focus()
-			, 1
+			btn.enable()
 		, seconds * 1000
 
 	messageSubmitHandler: (evt) =>
 		data =
-			msg: @element.find('.chat-form .chat-msg-input').popVal().slice(0, 512)
+			msg: @element.find('.chat-msg-input').popVal().slice(0, 512)
 			oauth_token: oauth_token
 			course: @course
 
@@ -74,7 +72,7 @@ class Chat
 window.url = 'https://pqp-chat.herokuapp.com'
 window.element = $('.chat')
 window.template = """
-						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}">
+						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}" data-id="{{id}}">
         	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
         		</li>
 """
