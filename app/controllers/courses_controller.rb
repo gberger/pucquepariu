@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @ad = @course.course_ads.sample
 
     @recent_messages = ChatMessage.uncached do
-       ChatMessage.find_all_by_course_id(course.id).recent
+       ChatMessage.where(course_id: course.id).recent
     end
 
     return if @course.exams.empty?
