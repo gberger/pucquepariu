@@ -71,11 +71,12 @@ class Chat
 			@element.find('.no-messages-placeholder').remove()
 			@hasRemovedPlaceholder = true
 
-url = 'https://pqp-chat.herokuapp.com'
-element = $('.chat')
-course = window.course
-template = """
+window.url = 'https://pqp-chat.herokuapp.com'
+window.element = $('.chat')
+window.template = """
 						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}">
         	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span>
         		</li>
 """
+
+window.Chat = Chat
