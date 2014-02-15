@@ -32,7 +32,7 @@ class Chat
 		setInterval @updateTimestamps, 1000
 		@element.find('.chat-form').on 'submit', @messageSubmitHandler
 		@socket.on "broadcast-message-#{@course}", @messageReceiveHandler
-		setTimeout ->
+		setTimeout =>
 			@element.find('.no-messages-placeholder').text('Não há mensagens ainda. Seja o primeiro!')
 		, 5000
 
