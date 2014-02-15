@@ -18,4 +18,8 @@ class Time
   def semester
     month <= 6 ? 1 : 2
   end
+
+  def ms
+    (to_f * 1000).to_i
+  end
 end
