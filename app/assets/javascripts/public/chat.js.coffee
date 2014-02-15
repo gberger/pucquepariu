@@ -86,7 +86,7 @@ window.url = 'https://pqp-chat.herokuapp.com'
 window.element = $('.chat')
 window.template = """
 						<li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{{timestamp}}" data-id="{{id}}">
-        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span> <i class="glyphicon glyphicon-remove-circle hide chat-remove pull-right" data-id="{{id}}"></i>
+        	   	<strong class="chat-name">{{name}}</strong>: <span class="chat-msg">{{msg}}</span> <i class="glyphicon glyphicon-remove-circle hide chat-remove pull-right text-danger" data-id="{{id}}"></i>
         		</li>
 """
 
