@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @ad = @course.course_ads.sample
 
     @recent_messages = ChatMessage.uncached do
-       ChatMessage.where(course_id: course.id).recent
+       ChatMessage.where(course_id: course.id).order("created_at DESC").limit(20)
     end
 
     return if @course.exams.empty?
