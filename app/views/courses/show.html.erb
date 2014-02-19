@@ -13,15 +13,30 @@
 </div>
 
 <div class="row">
+
   <div class="col-md-3">
-    <%= render partial: 'courses/chat', locals: {course: @course, current_user: current_user, recent_messages: @recent_messages} %>
+    <div class="hidden-xs">
+      <%= render partial: 'courses/chat', locals: {course: @course, current_user: current_user, recent_messages: @recent_messages} %>
+    </div>
 
-    <% if @ad %>
-      <%= link_to image_tag(@ad.image, width: '265px'), @ad.link %>
-    <% end %>
+    <div class="text-center">
+      <% if @ad %>
+          <%= link_to image_tag(@ad.image, width: '265px'), @ad.link %>
+      <% else %>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- PQP Course Sidebar -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-5891678649818645"
+             data-ad-slot="1422195616"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      <% end %>
+    </div>
   </div>
-  <div class="col-md-9">
 
+  <div class="col-md-9">
     <ul class="nav nav-pills">
       <% if @course.exams.count > 0 %>
         <li class="active"><a href="#exams" data-toggle="pill"><span class="badge"><%= @course.exams.count %></span> Provas</a></li>
@@ -74,6 +89,5 @@
         </div>
       <% end %>
     </div>
-
   </div>
 </div>
