@@ -9,7 +9,10 @@
           </div>
 
           <%= link_to div_link('Material'), course, class: 'btn btn-default' %>
-          <% if can? :edit, course then %><%= link_to i_edit, edit_course_path(course), class: 'btn btn-success div-link-other' %><% end %>
+          <% if can? :edit, course %>
+            <%= link_to i_edit, edit_course_path(course), class: 'btn btn-success div-link-other' %>
+            <%= link_to fa('files-o') + " Files", course_study_materials_path(course), class: 'btn btn-info div-link-other' %>
+          <% end %>
         </div>
       </div>
     </div>

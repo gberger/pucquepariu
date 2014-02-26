@@ -12,7 +12,7 @@ $ ->
 				return false
 			abbreviation = data.files[0].name.split("-")[0]
 			if validAbbreviations.indexOf(abbreviation) is -1
-				alert "Essa disciplina não existe: " + abbreviation
+				alert "Essa disciplina não existe ou você não está autorizado: " + abbreviation
 				return false
 			data.context = $(tmpl("template-upload", data.files[0]))
 			$(".panel-upload .list-group").append data.context

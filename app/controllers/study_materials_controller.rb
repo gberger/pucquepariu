@@ -1,21 +1,25 @@
 class StudyMaterialsController < ApplicationController
   authorize_resource
 
-  # GET /study_materials
-  def index
-    @study_materials = StudyMaterial.ordered
+  # GET /course/INF1005/study_materials
+  def show
+    @course = Course.find_by_abbreviation(params[:course_abbreviation])
+    authorize! :manage, @course
+    @study_materials = StudyMaterial.where(course: @course)
   end
 
   # POST /study_materials
   def create
     @study_material = StudyMaterial.new(study_material_params)
     @study_material.parse_filename(study_material_params[:content].original_filename)
+    authorize! :manage, @study_material.course
     @study_material.save
   end
 
   # DELETE /study_materials/1
   def destroy
     @study_material = StudyMaterial.find(params[:id])
+    authorize! :manage, @study_material.course
     @study_material.destroy
     redirect_to study_materials_url, notice: 'Study material was successfully destroyed.'
   end

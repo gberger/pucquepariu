@@ -1,7 +1,8 @@
 Pqp::Application.routes.draw do
 
-  resources :study_materials
+  resources :study_materials, except: [:index, :show]
   resources :courses, path: "disciplinas"
+  get '/disciplinas/:course_abbreviation/study_materials', to: 'study_materials#show', as: 'course_study_materials'
 
   root 'static#index'
   get "index", to: 'static#index'

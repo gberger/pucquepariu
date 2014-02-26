@@ -15,7 +15,9 @@ class Ability
       can :manage, Course do |course|
         course.teacher == user
       end
-      can :manage, StudyMaterial
+      can :manage, StudyMaterial do |study_material|
+        study_material.course.teacher == user
+      end
     end
 
     if user.role? :admin
