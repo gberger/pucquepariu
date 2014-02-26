@@ -5,10 +5,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def toggle_admin
+  def edit_role
     user = User.find(params[:id])
-    user.is_admin = !user.is_admin
+    user.role = params[:role]
     user.save
-    redirect_to users_path
+    head :no_content
   end
 end

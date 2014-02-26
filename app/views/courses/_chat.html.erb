@@ -1,4 +1,4 @@
-<div class="panel panel-primary chat <%= current_user && current_user.is_admin? ? 'admin' : '' %>" id="chat">
+<div class="panel panel-primary chat <%= can?(:manage, ChatMessage) ? 'admin' : '' %>" id="chat">
   <div class="panel-heading">Chat de <%= course.abbreviation %></div>
   <ul class="list-group chat-messages">
     <% if recent_messages.empty? %>
@@ -29,7 +29,7 @@
 <% content_for :bottom do %>
   <script>
     <% if current_user %>
-      var isAdmin = <%= current_user.is_admin? %>;
+      var isAdmin = <%= can?(:manage, ChatMessage) %>;
       var oauth_token = '<%= j current_user.oauth_token %>';
     <% end %>
     var course = '<%= j course.abbreviation %>';

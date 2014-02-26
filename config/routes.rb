@@ -11,5 +11,5 @@ Pqp::Application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   get "users", to: 'users#index'
-  put "users/:id/toggle_admin", to: 'users#toggle_admin', as: 'toggle_admin'
+  put "users/:id/edit_role", to: 'users#edit_role', as: 'edit_role'
 end

@@ -25,7 +25,7 @@
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "public", media: "all" %>
-  <% if current_user && current_user.is_admin? %>
+  <% if current_user && current_user.role_above?(:basic) %>
     <%= stylesheet_link_tag "admin", media: "all" %>
   <% end %>
   <%= yield(:head) %>
@@ -62,8 +62,10 @@
             <li>
               <strong class="navbar-text">
                 <span id="current_user_name"><%= current_user.name %></span>
-                <% if current_user.is_admin? %>
+                <% if current_user.role?(:admin) %>
                   <%= fa 'star' %>
+                <% elsif current_user.role?(:teacher) %>
+                  <%= fa 'pencil' %>
                 <% end %>
               </strong>
             </li>
@@ -107,7 +109,7 @@
 </div>
 
 <%= javascript_include_tag "public" %>
-<% if current_user && current_user.is_admin? %>
+<% if current_user && current_user.role_above?(:basic) %>
   <%= javascript_include_tag "admin" %>
 <% end %>
 <%= yield(:bottom) %>

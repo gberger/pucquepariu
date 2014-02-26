@@ -7,20 +7,45 @@
       <th>Name</th>
       <th>Nickname</th>
       <th>Email</th>
-      <th>Is Admin?</th>
+      <th>Role</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr class="<%= user.is_admin? ? 'success' : '' %>">
+      <tr class="<%= user.role == 'admin' ? 'success' : '' %> <%= user.role == 'teacher' ? 'info' : '' %>">
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><a href="//facebook.com/<%= user.nickname %>"><%= user.nickname %></a></td>
         <td><%= user.email %></td>
-        <td><%= user.is_admin? ? fa('check') : glyph('remove') %></td>
-        <td><%= link_to "Toggle admin", toggle_admin_path(user), method: :put %></td>
+        <td><%= user.role %></td>
+        <td>
+          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="basic"   data-id="<%= user.id %>" title="Make basic"   data-toggle="tooltip"><%= fa 'user' %></a>
+          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="teacher" data-id="<%= user.id %>" title="Make teacher" data-toggle="tooltip"><%= fa 'pencil' %></a>
+          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="admin"   data-id="<%= user.id %>" title="Make admin"   data-toggle="tooltip"><%= fa 'star' %></a>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% content_for :bottom do %>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.edit-role').tooltip().click(function(){
+        $this = $(this);
+        var role = $this.data('role');
+        var id = $this.data('id');
+        $.ajax({
+            method: 'put',
+            url: '/users/' + id + '/edit_role',
+            data: {role: role}
+          }).then(function(){
+          location.reload();
+        })
+      })
+    })
+  </script>
+
+<% end %>
