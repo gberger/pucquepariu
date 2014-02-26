@@ -22,4 +22,8 @@ class Time
   def ms
     (to_f * 1000).to_i
   end
+
+  def to_date
+    Date.parse(self.to_s)
+  end
 end
