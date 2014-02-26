@@ -8,7 +8,10 @@ class UsersController < ApplicationController
   def edit_role
     user = User.find(params[:id])
     user.role = params[:role]
-    user.save
-    head :no_content
+    if user.save
+      head :ok
+    else
+      render json: user.errors.full_messages, status: :bad_request
+    end
   end
 end
