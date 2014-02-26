@@ -14,3 +14,15 @@
     @extend .form-control;
   }
 }
+
+// wtf why doesn't this work
+.table > thead > tr > .info,
+.table > thead > .info > td,
+.table > thead > .info > th,
+.table > tbody > tr > .info,
+.table > tbody > .info > td,
+.table > tbody > .info > th,
+.table > tfoot > tr > .info,
+.table > tfoot > .info > td,
+.table > tfoot > .info > th {
+  background-color: #d9edf7; }
