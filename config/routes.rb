@@ -5,7 +5,8 @@ Pqp::Application.routes.draw do
   get '/disciplinas/:course_abbreviation/study_materials', to: 'study_materials#show', as: 'course_study_materials'
 
   root 'static#index'
-  get "index", to: 'static#index'
+  get 'index', to: 'static#index'
+  get 'ping', to: 'static#ping'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
