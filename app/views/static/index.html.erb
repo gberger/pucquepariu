@@ -19,9 +19,25 @@
     <div class="cloudy">
       <h2>Novidades</h2>
 
+      <% cache(StudyMaterial.last.cache_key) do %>
+        <ul>
+          <% StudyMaterial.recent.group_by{|s| s.created_at.to_date}.each_pair do |date, date_materials| %>
+            <% date_materials.group_by(&:course).each_pair do |course, course_materials| %>
+              <li>
+                <%= pluralize(course_materials.length, 'novo arquivo', 'novos arquivos') %>
+                de
+                <%= link_to course.abbreviation, course %>
+                (<%= date %>)
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+
       <div class="text-cemter">
         <div class="fb-like-box" data-href="https://www.facebook.com/PUCQuePariu" data-width="400" data-show-faces="false" data-header="false" data-stream="true" data-show-border="true"></div>
       </div>
+
     </div>
   </div>
 

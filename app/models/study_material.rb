@@ -7,6 +7,7 @@ class StudyMaterial < ActiveRecord::Base
   mount_uploader :content, ContentUploader
 
   scope :ordered, joins: :course, order: "courses.abbreviation"
+  scope :recent, -> { order("created_at desc").where(created_at: (Date.today-1.month)..Date.today) }
 
   def parse_filename(filename)
     filename_without_extension = filename.split('.').drop(-1).join('.')
