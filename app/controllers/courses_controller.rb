@@ -11,11 +11,11 @@ class CoursesController < ApplicationController
     unless params[:id].upcased?
       redirect_to course_path(params[:id].upcase), status: :moved_permanently
     end
-    @course = course = Course.find_by_abbreviation(params[:id])
+    @course = Course.find_by_abbreviation(params[:id])
     @ad = @course.course_ads.sample
 
     @recent_messages = ChatMessage.uncached do
-       ChatMessage.where(course_id: course.id).order("created_at DESC").limit(20)
+       ChatMessage.where(course_id: @course.id).order("created_at DESC").limit(20)
     end
 
     return if @course.exams.empty?
