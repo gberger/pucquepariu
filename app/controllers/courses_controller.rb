@@ -42,6 +42,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @majors = Major.all
   end
 
   # GET /courses/1/edit
@@ -50,6 +51,7 @@ class CoursesController < ApplicationController
       redirect_to edit_course_path(params[:id].upcase), status: :moved_permanently
     end
     @course = Course.find_by_abbreviation(params[:id])
+    @majors = Major.all
   end
 
   # POST /courses
@@ -84,6 +86,6 @@ class CoursesController < ApplicationController
 private
   # Never trust parameters from the scary internet, only allow the white list through.
   def course_params
-    params.require(:course).permit(:abbreviation, :name, :credits, :study_plan, :teacher_id)
+    params.require(:course).permit(:abbreviation, :name, :credits, :study_plan, :teacher_id, :major_ids => [])
   end
 end

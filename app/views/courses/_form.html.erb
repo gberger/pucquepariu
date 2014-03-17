@@ -6,6 +6,16 @@
   <%= f.number_field :credits %>
   <%= f.collection_select :teacher_id, User.teacher, :id, :name, prompt: true %>
 
+  <% @majors.each do |major| %>
+    <%= hidden_field_tag "course[major_ids][]", nil %>
+    <div>
+      <label>
+        <%= check_box_tag "course[major_ids][]", major.id, @course.majors.include?(major) %>
+        <%= major.name %>
+      </label>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-6">
       <%= f.text_area :study_plan, cols: 10, rows: 20, id: 'sp-input' %>
