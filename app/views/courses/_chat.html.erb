@@ -27,14 +27,22 @@
 </div>
 
 <% content_for :bottom do %>
+  <script type="text/x-tmpl" id="msg_tmpl">
+    <li class="list-group-item timestamp chat-item" data-toggle="tooltip" data-placement="left" title="tt" data-timestamp="{%= o.timestamp %}" data-id="{%= o.id %}">
+      <strong class="chat-name">{%= o.name %}</strong>: <span class="chat-msg">{%= o.msg %}</span> <i class="glyphicon glyphicon-remove-circle hide chat-remove pull-right text-danger" data-id="{%= o.id %}"></i>
+    </li>
+  </script>
+
   <script>
     <% if current_user %>
       var isAdmin = <%= can?(:manage, course) %>;
       var oauth_token = '<%= j current_user.oauth_token %>';
     <% end %>
+    var element = $('.chat');
+    var url = 'https://pqp-chat.herokuapp.com';
     var course = '<%= j course.abbreviation %>';
 
-    var chat = new Chat(element, url, course, template)
+    var chat = new Chat(element, url, course, tmpl('msg_tmpl'))
 
   </script>
 <% end %>

@@ -14,12 +14,17 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'jquery-fileupload-rails'
+
 # rails-assets.org
 gem 'rails-assets-jquery'
 gem 'rails-assets-jquery-ujs-standalone'
 gem 'rails-assets-bootstrap-sass'
 gem 'rails-assets-components-font-awesome'
-gem 'rails-assets-jquery-file-upload'
+gem 'rails-assets-datatables'
+gem 'rails-assets-moment'
+gem 'rails-assets-marked'
+gem 'rails-assets-bootstrap-markdown'
 
 gem 'bootstrap_form'
 

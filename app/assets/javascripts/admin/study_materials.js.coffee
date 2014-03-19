@@ -1,3 +1,4 @@
+#= require jquery-fileupload/basic
 #= require jquery.dataTables.min
 #= require dataTables-bootstrap3
 

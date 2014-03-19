@@ -89,6 +89,9 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.9)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
@@ -136,20 +139,19 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.3)
       sprockets-rails (~> 2.0.0)
-    rails-assets-blueimp-canvas-to-blob (2.1.0)
-    rails-assets-blueimp-load-image (1.11.1)
-    rails-assets-blueimp-tmpl (2.5.3)
+    rails-assets-bootstrap (3.1.1)
+      rails-assets-jquery (>= 1.9.0)
+    rails-assets-bootstrap-markdown (2.3.1)
+      rails-assets-bootstrap (~> 3.1.1)
     rails-assets-bootstrap-sass (3.0.2)
       rails-assets-jquery (>= 1.9.0)
     rails-assets-components-font-awesome (4.0.3)
+    rails-assets-datatables (1.9.3)
     rails-assets-jquery (2.1.0)
-    rails-assets-jquery-file-upload (9.5.7)
-      rails-assets-blueimp-canvas-to-blob (>= 2.1.0)
-      rails-assets-blueimp-load-image (>= 1.11.0)
-      rails-assets-blueimp-tmpl (>= 2.5.3)
-      rails-assets-jquery (>= 1.6)
     rails-assets-jquery-ujs-standalone (1.0.0)
       rails-assets-jquery (> 1.7.0)
+    rails-assets-marked (0.3.2)
+    rails-assets-moment (2.5.1)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -216,15 +218,19 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fog
   friendly_id
+  jquery-fileupload-rails
   newrelic_rpm
   omniauth-facebook
   pg
   rails (= 4.0.3)
+  rails-assets-bootstrap-markdown
   rails-assets-bootstrap-sass
   rails-assets-components-font-awesome
+  rails-assets-datatables
   rails-assets-jquery
-  rails-assets-jquery-file-upload
   rails-assets-jquery-ujs-standalone
+  rails-assets-marked
+  rails-assets-moment
   rails_12factor
   redcarpet
   rspec-rails
