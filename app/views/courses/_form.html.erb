@@ -43,7 +43,28 @@
         setTimeout(function(){
           $('.md-preview table').addClass('table table-striped table-bordered table-hover');
         }, 1);
-      }
+      },
+      additionalButtons: [
+        [{
+          name: "groupMisc",
+          data: [{
+            name: "cmdTable",
+            title: "Table",
+            icon: "fa fa-table",
+            callback: function(e){
+              e.setContent(e.getContent() + '\n\n' +
+                "| Left align | Center align | Right align |\n"+
+                "|-----------|:------------:|------------:|\n"+
+                "| This       |        This |     This     \n"+
+                "| column     |      column |    column    \n"+
+                "| will       |        will |     will     \n"+
+                "| be         |          be |      be      \n"+
+                "| left       |       center |    right    \n"+
+                "| aligned    |     aligned |   aligned\n");
+            }
+          }]
+        }]
+      ]
     })
   </script>
 <% end %>
