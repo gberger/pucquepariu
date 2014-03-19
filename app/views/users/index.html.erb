@@ -8,7 +8,9 @@
       <th>Nickname</th>
       <th>Email</th>
       <th>Role</th>
-      <th></th>
+      <% if can?(:manage, User) %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -19,33 +21,35 @@
         <td><a href="//facebook.com/<%= user.nickname %>"><%= user.nickname %></a></td>
         <td><%= user.email %></td>
         <td><%= user.role %></td>
-        <td>
-          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="basic"   data-id="<%= user.id %>" title="Make basic"   data-toggle="tooltip"><%= fa 'user' %></a>
-          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="teacher" data-id="<%= user.id %>" title="Make teacher" data-toggle="tooltip"><%= fa 'pencil' %></a>
-          <a type="button" class="btb btn-primary btn-sm edit-role" data-role="admin"   data-id="<%= user.id %>" title="Make admin"   data-toggle="tooltip"><%= fa 'star' %></a>
-        </td>
+        <% if can?(:manage, User) %>
+          <td>
+            <a type="button" class="btb btn-primary btn-sm edit-role" data-role="basic"   data-id="<%= user.id %>" title="Make basic"   data-toggle="tooltip"><%= fa 'user' %></a>
+            <a type="button" class="btb btn-primary btn-sm edit-role" data-role="teacher" data-id="<%= user.id %>" title="Make teacher" data-toggle="tooltip"><%= fa 'pencil' %></a>
+            <a type="button" class="btb btn-primary btn-sm edit-role" data-role="admin"   data-id="<%= user.id %>" title="Make admin"   data-toggle="tooltip"><%= fa 'star' %></a>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<% content_for :bottom do %>
-
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.edit-role').tooltip().click(function(){
-        $this = $(this);
-        var role = $this.data('role');
-        var id = $this.data('id');
-        $.ajax({
-            method: 'put',
-            url: '/users/' + id + '/edit_role',
-            data: {role: role}
-          }).then(function(){
-          location.reload();
+<% if can?(:manage, User) %>
+  <% content_for :bottom do %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.edit-role').tooltip().click(function(){
+          $this = $(this);
+          var role = $this.data('role');
+          var id = $this.data('id');
+          $.ajax({
+              method: 'put',
+              url: '/users/' + id + '/role',
+              data: {role: role}
+            }).then(function(){
+            location.reload();
+          })
         })
       })
-    })
-  </script>
-
+    </script>
+  <% end %>
 <% end %>

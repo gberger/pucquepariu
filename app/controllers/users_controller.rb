@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  authorize_resource
-
   def index
+    authorize! :read, User
     @users = User.all
   end
 
-  def edit_role
+  def role
+    authorize! :manage, User
     user = User.find(params[:id])
     user.role = params[:role]
     if user.save

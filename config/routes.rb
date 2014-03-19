@@ -13,5 +13,5 @@ Pqp::Application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   get "users", to: 'users#index'
-  put "users/:id/edit_role", to: 'users#edit_role', as: 'edit_role'
+  put "users/:id/role", to: 'users#role', as: 'role'
 end
