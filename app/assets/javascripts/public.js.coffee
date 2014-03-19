@@ -1,4 +1,5 @@
 #= require jquery
-#= require jquery_ujs
-#= require bootstrap
+#= require jquery-ujs-standalone
+#= require bootstrap-sass
+#= require_self
 #= require_tree ./public

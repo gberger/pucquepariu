@@ -1,3 +1,3 @@
-#= require jquery-fileupload/basic
-#= require jquery-fileupload/vendor/tmpl
-# = require_tree ./admin
+#= require jquery-file-upload
+#= require_self
+#= require_tree ./admin

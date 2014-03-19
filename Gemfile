@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 ruby '2.0.0'
 
@@ -13,12 +14,14 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'bootstrap-sass', '~> 3.1.1'
-gem 'font-awesome-rails', '~> 4.0.3.0'
-gem 'bootstrap_form'
-gem 'jquery-fileupload-rails'
+# rails-assets.org
+gem 'rails-assets-jquery'
+gem 'rails-assets-jquery-ujs-standalone'
+gem 'rails-assets-bootstrap-sass'
+gem 'rails-assets-components-font-awesome'
+gem 'rails-assets-jquery-file-upload'
 
-gem 'jquery-rails'
+gem 'bootstrap_form'
 
 gem 'friendly_id'
 
