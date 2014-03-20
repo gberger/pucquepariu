@@ -1,4 +1,4 @@
-@import "bootstrap-sass";
+@import "bootstrap_custom";
 
 .media img.media-object {
   width: 64px;
@@ -27,10 +27,12 @@
 .table > tfoot > .info > th {
   background-color: #d9edf7; }
 
-.navbar-brand {
-  padding-top: 0;
-  padding-bottom: 0;
-  .logo {
-    height: 50px;
+.navbar-header {
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    .logo {
+      height: 50px;
+    }
   }
 }

@@ -36,6 +36,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     bootstrap_form (2.0.1)
     builder (3.1.4)
     cancan (1.6.10)
@@ -145,8 +147,6 @@ GEM
       rails-assets-jquery (>= 1.9.0)
     rails-assets-bootstrap-markdown (2.3.1)
       rails-assets-bootstrap (~> 3.1.1)
-    rails-assets-bootstrap-sass (3.0.2)
-      rails-assets-jquery (>= 1.9.0)
     rails-assets-datatables (1.9.3)
     rails-assets-jquery (2.1.0)
     rails-assets-jquery-ujs-standalone (1.0.0)
@@ -210,6 +210,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.1.1)
   bootstrap_form
   cancan
   carrierwave
@@ -226,7 +227,6 @@ DEPENDENCIES
   pg
   rails (= 4.0.3)
   rails-assets-bootstrap-markdown
-  rails-assets-bootstrap-sass
   rails-assets-datatables
   rails-assets-jquery
   rails-assets-jquery-ujs-standalone
