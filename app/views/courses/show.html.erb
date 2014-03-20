@@ -29,7 +29,7 @@
   <div class="col-md-9">
     <ul class="nav nav-pills">
       <% if @course.exams.count > 0 %>
-        <li class="active"><a href="#provas" data-toggle="pill"><span class="badge"><%= @course.exams.count %></span> Provas</a></li>
+        <li class="active"><a href="#provas" data-toggle="pill">Provas</a></li>
       <% end %>
       <% unless @course.study_plan.empty? %>
         <li class="<%= if @course.exams.count == 0 then ' active' end %>"><a href="#etc" data-toggle="pill">Exercícios, resumos etc</a></li>
