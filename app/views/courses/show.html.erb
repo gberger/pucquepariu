@@ -57,7 +57,7 @@
                   <td>
                     <% if v %>
                       <% v.study_materials.each do |s| %>
-                        <%= link_to glyph('download') + " #{s.title}", s.content.url, class: 'btn btn-xs btn-success btn-block' %>
+                        <%= link_to fa('download') + " #{s.title}", s.content.url, class: 'btn btn-xs btn-success btn-block' %>
                       <% end %>
                     <% end %>
                   </td>
