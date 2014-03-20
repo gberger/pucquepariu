@@ -28,3 +28,10 @@ $ ->
 			if data.context
 				data.context.find(".progress").removeClass "progress-striped active"
 				data.context.find(".progress-bar").addClass "progress-bar-success"
+
+$ ->
+	$('.btn-delete-study-material').on 'click', ->
+		$this = $(this)
+		$tr = $this.parent().parent()
+		$.ajax({method: 'DELETE', url: '/study_materials/47'}).done ->
+			$tr.remove()
