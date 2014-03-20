@@ -19,9 +19,10 @@ class StudyMaterialsController < ApplicationController
   # DELETE /study_materials/1
   def destroy
     @study_material = StudyMaterial.find(params[:id])
-    authorize! :manage, @study_material.course
+    @course = @study_material.course
+    authorize! :manage, @course
     @study_material.destroy
-    redirect_to study_materials_url, notice: 'Study material was successfully destroyed.'
+    redirect_to course_study_materials_url(@course), notice: 'Study material was successfully destroyed.'
   end
 
 private
