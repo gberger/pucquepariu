@@ -58,7 +58,7 @@ class Chat
 		$lg = @element.find('.chat-messages')
 		@removePlaceholder()
 
-		$line = @template(message)
+		$line = $(@template(message))
 		$line.find('.chat-remove').on 'click', @adminDeleteMessage
 		$lg.append($line)
 		@updateTimestamps()
