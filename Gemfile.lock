@@ -152,7 +152,6 @@ GEM
     rails-assets-jquery-ujs-standalone (1.0.0)
       rails-assets-jquery (> 1.7.0)
     rails-assets-marked (0.3.2)
-    rails-assets-moment (2.5.1)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -231,7 +230,6 @@ DEPENDENCIES
   rails-assets-jquery
   rails-assets-jquery-ujs-standalone
   rails-assets-marked
-  rails-assets-moment
   rails_12factor
   redcarpet
   rspec-rails

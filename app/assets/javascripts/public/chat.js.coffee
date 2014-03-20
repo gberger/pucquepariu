@@ -1,6 +1,5 @@
 #= require socket.io
 #= require jquery-fileupload/vendor/tmpl
-#= require moment.js
 
 $.fn.scrollDown = ->
 	$(this).scrollTop(this.prop('scrollHeight'))
@@ -17,17 +16,54 @@ $.fn.disable = ->
 $.fn.enable = ->
 	$(this).attr('disabled', false)
 
+fromNow = (d) ->
+	unless d instanceof Date
+		d = new Date(d)
+
+	difference = d - new Date()
+
+	# string, limit, divider
+	limits = [
+		["momentos",    1000,                  1]
+		["%d segundos", 1000*60,               1000]
+		["um minuto",   1000*60*2,             1000]
+		["%d minutos",  1000*60*60,            1000*60]
+		["uma hora",    1000*60*60*2,          1000*60*60]
+		["%d horas",    1000*60*60*24,         1000*60*60]
+		["um dia",      1000*60*60*24*2,       1000*60*60*24]
+		["%d dias",     1000*60*60*24*30,      1000*60*60*24]
+		["um mês",      1000*60*60*24*30*2,    1000*60*60*24*30]
+		["%d meses",    1000*60*60*24*30*12,   1000*60*60*24*30]
+		["um ano",      1000*60*60*24*30*12*2, 1000*60*60*24*30*12]
+		["%d anos",     Infinity,              1]
+	]
+
+	# past or future
+	# tiny tolerance to permit for `fromNow(new Date())` to be in the past
+	str = if difference <= 5 then 'há %s' else 'em %s'
+
+	difference = Math.abs(difference)
+
+	limit = do (difference) ->
+		for limit in limits
+			if difference < limit[1]
+				return limit
+
+	return str.replace('%s', limit[0].replace('%d', (difference/limit[2]).toFixed(0)))
+
+
 class Chat
 	constructor: (@element, @url, @course, @template) ->
 		@socket = io.connect(@url)
 		@hasRemovedPlaceholder = false
 		@bindEvents()
 		@element.find('.chat-messages').scrollDown()
+		@updateTimestamps()
 
 	updateTimestamps: =>
 		@element.find(".timestamp").each (i, el) ->
 			$el = $(el)
-			$el.attr('title', moment($el.data("timestamp")).fromNow()).tooltip('fixTitle')
+			$el.attr('title', fromNow($el.data("timestamp"))).tooltip('fixTitle')
 
 	bindEvents: =>
 		setInterval @updateTimestamps, 23000

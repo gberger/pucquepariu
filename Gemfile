@@ -22,7 +22,6 @@ gem 'bootstrap-sass', '~> 3.1.1' # customized
 gem 'rails-assets-jquery'
 gem 'rails-assets-jquery-ujs-standalone'
 gem 'rails-assets-datatables'
-gem 'rails-assets-moment'
 gem 'rails-assets-marked'
 gem 'rails-assets-bootstrap-markdown'
 
