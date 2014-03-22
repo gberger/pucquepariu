@@ -9,6 +9,14 @@ class StudyMaterial < ActiveRecord::Base
   scope :ordered, joins: :course, order: "courses.abbreviation"
   scope :recent, -> { order("created_at desc").where(created_at: (Date.today-1.month)..Date.today) }
 
+  def self.new_from_filename(params)
+    sm = self.new(params)
+    sm.send(:parse_filename, params[:content].original_filename)
+    sm
+  end
+
+private
+
   def parse_filename(filename)
     filename_without_extension = filename.split('.').drop(-1).join('.')
     parts = filename_without_extension.split('-')

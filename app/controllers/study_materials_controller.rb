@@ -2,25 +2,29 @@ class StudyMaterialsController < ApplicationController
   authorize_resource
 
   # GET /course/INF1005/study_materials
-  def show
-    @course = Course.find_by_abbreviation(params[:course_abbreviation])
+  def index
+    @course = Course.find_by_abbreviation(params[:course_id])
     authorize! :manage, @course
+
     @study_materials = StudyMaterial.where(course: @course)
+    @study_material = @course.study_materials.build
   end
 
-  # POST /study_materials
+  # POST /course/INF1005/study_materials
   def create
-    @study_material = StudyMaterial.new(study_material_params)
-    @study_material.parse_filename(study_material_params[:content].original_filename)
-    authorize! :manage, @study_material.course
+    @course = Course.find_by_abbreviation(params[:course_id])
+    authorize! :manage, @course
+
+    @study_material = StudyMaterial.new_from_filename(study_material_params)
     @study_material.save
   end
 
-  # DELETE /study_materials/1
+  # DELETE /course/INF1005/study_materials/1
   def destroy
-    @study_material = StudyMaterial.find(params[:id])
-    @course = @study_material.course
+    @course = Course.find_by_abbreviation(params[:course_id])
     authorize! :manage, @course
+
+    @study_material = @course.study_materials.find(params[:id])
     @study_material.destroy
     redirect_to course_study_materials_url(@course), notice: 'Study material was successfully destroyed.'
   end

@@ -5,5 +5,5 @@
   <td><%= study_material.content_url %></td>
   <td><textarea class="form-control">[<%= study_material.title %>](<%= study_material.content.url %>)</textarea></td>
   <td><%= study_material.updated_at %></td>
-  <td><%= link_to i_delete, study_material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
+  <td><%= link_to i_delete, course_study_material_path(study_material.course, study_material), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
 </tr>
