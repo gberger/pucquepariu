@@ -216,7 +216,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   debugger
   dotenv-rails
-  factory_girl_rails (~> 4.0)
+  factory_girl_rails
   fog
   font-awesome-sass
   friendly_id

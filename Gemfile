@@ -41,11 +41,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
   gem 'debugger'
-end
-
-group :test do
-  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :production do
