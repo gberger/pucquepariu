@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     unless params[:id].upcased?
-      redirect_to course_path(params[:id].upcase), status: :moved_permanently
+      return redirect_to course_path(params[:id].upcase), status: :moved_permanently
     end
     @course = Course.find_by_abbreviation(params[:id])
     @ad = @course.course_ads.sample
