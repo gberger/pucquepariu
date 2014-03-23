@@ -261,6 +261,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-facebook
   pg
+  pry
   rails (= 4.0.3)
   rails-assets-bootstrap-markdown
   rails-assets-datatables
