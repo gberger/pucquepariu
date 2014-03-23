@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   ROLES = %w[basic teacher admin]
   validate :role, inclusion: {in: ROLES}
 
-  default_scope order('id ASC')
+  default_scope { order('id ASC') }
   scope :admin, -> { where(role: 'admin') }
   scope :teacher, -> {where('role=? OR role=?', 'admin', 'teacher')}
 
