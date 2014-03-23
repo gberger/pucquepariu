@@ -8,7 +8,7 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false
-  validates_format_of :abbreviation, with: /[A-Z]{3}[0-9]{4}/, message: 'must be in the format "ABC1234"'
+  validates_format_of :abbreviation, with: /\A[A-Z]{3}[0-9]{4}\z/, message: 'must be in the format "ABC1234"'
 
   default_scope { order("abbreviation ASC") }
 
@@ -30,6 +30,6 @@ class Course < ActiveRecord::Base
 
   before_validation :normalize_abbreviation
   def normalize_abbreviation
-    self.abbreviation.gsub!(/[^A-Za-z0-9]/, '')
+    self.abbreviation.gsub!(/[^A-Za-z0-9]/, '') if self.abbreviation
   end
 end
