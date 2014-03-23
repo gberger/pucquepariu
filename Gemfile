@@ -43,6 +43,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'debugger'
+  gem 'guard-rspec'
 end
 
 group :production do
