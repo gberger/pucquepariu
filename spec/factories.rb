@@ -8,6 +8,6 @@ FactoryGirl.define do
   factory :course do
     abbreviation { |n| "INF100#{n}" }
     name { |n| "Programação #{n}" }
-    credits { |n| n }
+    credits 4
   end
 end
