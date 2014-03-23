@@ -8,7 +8,7 @@ class Exam < ActiveRecord::Base
   validates :year, inclusion: {in: 1990..(Time.new.year)}
   validates :number, inclusion: {in: 1..4}
 
-  default_scope order("number ASC, year DESC, semester DESC")
+  default_scope { order("number ASC, year DESC, semester DESC") }
 
   def p
     'P' + self.number.to_s

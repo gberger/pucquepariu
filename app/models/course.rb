@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   validates_uniqueness_of :abbreviation, case_sensitive: false
   validates_format_of :abbreviation, with: /[A-Z]{3}[0-9]{4}/, message: 'must be in the format "ABC1234"'
 
-  default_scope order("abbreviation ASC")
+  default_scope { order("abbreviation ASC") }
 
   extend FriendlyId
   friendly_id :abbreviation
