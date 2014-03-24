@@ -40,7 +40,7 @@ GEM
       sass (~> 3.2)
     bootstrap_form (2.0.1)
     builder (3.1.4)
-    cancan (1.6.10)
+    cancancan (1.7.1)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -263,7 +263,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
-  cancan
+  cancancan
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
