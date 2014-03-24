@@ -4,7 +4,7 @@ describe 'Routing' do
 
   # Static
   it { should route(:get, '/').to('static#index') }
-  xit { should route(:get, '/index').to('static#index') }
+  it { {get: '/index'}.should route_to('static#index') } # one-way
   it { should route(:get, '/ping').to('static#ping') }
 
   # Courses
