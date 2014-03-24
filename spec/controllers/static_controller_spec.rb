@@ -16,4 +16,3 @@ describe StaticController do
   end
 
 end
-  
