@@ -32,42 +32,48 @@ describe User do
   end
 
   describe :role? do
-    it "should check if the user's role is at or above" do
-      @user = build(:user)
-      @teacher = build(:teacher)
-      @admin = build(:admin)
+    context 'when basic user' do
+      subject { build(:user) }
+      its(:role?, :basic)   { should be_true  }
+      its(:role?, :teacher) { should be_false }
+      its(:role?, :admin)   { should be_false }
+    end
 
-      @user.role?(:basic).should be_true
-      @user.role?(:teacher).should be_false
-      @user.role?(:admin).should be_false
+    context 'when teacher user' do
+      subject { build(:teacher) }
+      its(:role?, :basic)   { should be_true  }
+      its(:role?, :teacher) { should be_true  }
+      its(:role?, :admin)   { should be_false }
+    end
 
-      @teacher.role?(:basic).should be_true
-      @teacher.role?(:teacher).should be_true
-      @teacher.role?(:admin).should be_false
-
-      @admin.role?(:basic).should be_true
-      @admin.role?(:teacher).should be_true
-      @admin.role?(:admin).should be_true
+    context 'when admin user' do
+      subject { build(:admin) }
+      its(:role?, :basic)   { should be_true  }
+      its(:role?, :teacher) { should be_true  }
+      its(:role?, :admin)   { should be_true  }
     end
   end
 
   describe :role_above? do
-    it "should check if the user's role is at or above" do
-      @user = build(:user)
-      @teacher = build(:teacher)
-      @admin = build(:admin)
+    context 'when basic user' do
+      subject { build(:user) }
+      its(:role_above?, :basic)   { should be_false }
+      its(:role_above?, :teacher) { should be_false }
+      its(:role_above?, :admin)   { should be_false }
+    end
 
-      @user.role_above?(:basic).should be_false
-      @user.role_above?(:teacher).should be_false
-      @user.role_above?(:admin).should be_false
+    context 'when teacher user' do
+      subject { build(:teacher) }
+      its(:role_above?, :basic)   { should be_true  }
+      its(:role_above?, :teacher) { should be_false }
+      its(:role_above?, :admin)   { should be_false }
+    end
 
-      @teacher.role_above?(:basic).should be_true
-      @teacher.role_above?(:teacher).should be_false
-      @teacher.role_above?(:admin).should be_false
-
-      @admin.role_above?(:basic).should be_true
-      @admin.role_above?(:teacher).should be_true
-      @admin.role_above?(:admin).should be_false
+    context 'when admin user' do
+      subject { build(:admin) }
+      its(:role_above?, :basic)   { should be_true  }
+      its(:role_above?, :teacher) { should be_true  }
+      its(:role_above?, :admin)   { should be_false }
     end
   end
 end
