@@ -12,12 +12,12 @@ describe ApplicationHelper do
       helper.facebook_link_to('pucquepariu').should include('https://facebook.com/pucquepariu')
     end
 
-    xit 'contains an anchor tag' do
-      helper.facebook_link_to('pucquepariu').should have_tag('a')
+    it 'contains an anchor tag' do
+      helper.facebook_link_to('pucquepariu').should have_selector('a')
     end
 
-    xit 'contains some icons' do
-      helper.facebook_link_to('pucquepariu').should have_tag('i')
+    it 'contains some icons' do
+      helper.facebook_link_to('pucquepariu').should have_selector('i')
     end
   end
 end
