@@ -1,10 +1,10 @@
 class Course < ActiveRecord::Base
   has_many :exams, dependent: :destroy
   has_many :study_materials, dependent: :destroy
-  belongs_to :teacher, class_name: "User"
   has_many :course_ads
   has_many :chat_messages
   has_and_belongs_to_many :majors
+  belongs_to :teacher, class_name: "User"
 
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false

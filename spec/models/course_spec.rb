@@ -5,30 +5,25 @@ describe Course do
     @course = build(:course)
   end
 
+  describe 'relations' do
+    it { should have_many(:exams) }
+    it { should have_many(:study_materials).dependent(:destroy) }
+    it { should have_many(:course_ads) }
+    it { should have_many(:chat_messages) }
+    it { should have_and_belong_to_many(:majors) }
+    it { should belong_to(:teacher).class_name('User') }
+  end
+
   describe 'validations' do
-    it "is invalid without a name" do
-      expect(build(:course, name: nil)).not_to be_valid
-    end
-
-    it "is invalid without credits" do
-      expect(build(:course, credits: nil)).not_to be_valid
-    end
-
-    it "is invalid without an abbreviation" do
-      expect(build(:course, abbreviation: nil)).not_to be_valid
-    end
-
-    it "is invalid with duplicate abbreviations" do
-      @course.save
-      expect(build(:course, abbreviation: @course.abbreviation)).not_to be_valid
-    end
-
-    it "is invalid with different abbreviation format" do
-      expect(build(:course, abbreviation: 'ABC12345')).not_to be_valid
-      expect(build(:course, abbreviation: 'ABC123')).not_to be_valid
-      expect(build(:course, abbreviation: 'ABCD1234')).not_to be_valid
-      expect(build(:course, abbreviation: 'AB1234')).not_to be_valid
-    end
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:credits) }
+    it { should validate_presence_of(:abbreviation) }
+    it { should validate_uniqueness_of(:abbreviation) }
+    it { should     allow_value('ABC1234' ).for(:abbreviation) }
+    it { should_not allow_value('ABC12345').for(:abbreviation) }
+    it { should_not allow_value('ABC123'  ).for(:abbreviation) }
+    it { should_not allow_value('ABCD1234').for(:abbreviation) }
+    it { should_not allow_value('AB1234'  ).for(:abbreviation) }
   end
 
   describe 'scopes' do
@@ -37,7 +32,7 @@ describe Course do
       mat = create(:course, abbreviation: 'MAT1154')
       fis = create(:course, abbreviation: 'FIS1051')
 
-      expect(Course.all).to eq [fis, inf, mat]
+      Course.all.should eq [fis, inf, mat]
     end
   end
 
@@ -45,27 +40,19 @@ describe Course do
     it "upcases the abbreviation before saving" do
       @course.abbreviation.downcase!
       @course.save
-      expect(@course.abbreviation).to be_upcased
+      @course.abbreviation.should be_upcased
     end
   end
 
   describe :department_abbreviation do
-    it "is not nil" do
-      expect(@course.department_abbreviation).not_to be_nil
-    end
-
     it "is part of the course's abbreviation" do
-      expect(@course.department_abbreviation).to eq(@course.abbreviation[0, 3])
+      @course.department_abbreviation.should eq(@course.abbreviation[0, 3])
     end
   end
 
   describe :name_with_abbreviation do
-    it "is not nil" do
-      expect(@course.name_with_abbreviation).not_to be_nil
-    end
-
     it "joins the name and the abbreviation" do
-      expect(@course.name_with_abbreviation).to eq("#{@course.abbreviation} - #{@course.name}")
+      @course.name_with_abbreviation.should eq([@course.abbreviation, @course.name].join(' - '))
     end
   end
 end
