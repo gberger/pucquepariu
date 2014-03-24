@@ -27,22 +27,3 @@ class Time
     Date.parse(self.to_s)
   end
 end
-
-class ActiveRecord::Base
-  def pick(*filters)
-    params = {}
-
-    filters.flatten.each do |filter|
-      case filter
-        when String, Fixnum then
-          params[filter] = self[filter]
-        when Symbol then
-          params[filter] = self.send(filter)
-        when Hash then
-          params.merge filter
-      end
-    end
-
-    params
-  end
-end
