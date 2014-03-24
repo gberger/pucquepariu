@@ -28,6 +28,13 @@ FactoryGirl.define do
     credits 4
   end
 
+  factory :exam do
+    course
+    year { |n| (2000 + n/2).to_i }
+    semester { |n| (n % 2) +1 }
+    number { |n| (n % 4) + 1 }
+  end
+
   factory :chat_message do
     course
     user
