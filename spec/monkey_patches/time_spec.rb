@@ -16,7 +16,7 @@ describe Time do
   describe '#ms' do
     it 'is the Time in milliseconds' do
       t = Time.now
-      expect(t.ms).to be_close (t.to_i*1000), 1000
+      expect(t.ms).to be_within(1000).of(t.to_i*1000)
     end
   end
 
