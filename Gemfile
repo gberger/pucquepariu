@@ -48,6 +48,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'fuubar'
+  gem 'its'
 end
 
 group :production do
