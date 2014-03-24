@@ -9,7 +9,7 @@
       <%= f.text_field :abbreviation %>
       <%= f.text_field :name %>
       <%= f.number_field :credits %>
-      <%= f.collection_select :teacher_id, User.teacher, :id, :name, prompt: true %>
+      <%= f.collection_select :teacher_id, User.editors.order(:name), :id, :name, prompt: true %>
 
       <% @majors.each do |major| %>
         <%= hidden_field_tag "course[major_ids][]", nil %>
