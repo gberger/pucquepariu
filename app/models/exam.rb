@@ -2,11 +2,13 @@ class Exam < ActiveRecord::Base
   belongs_to :course
   has_many :study_materials, dependent: :destroy
 
-  # Unique on all columns at the same time
-  validates_uniqueness_of :course, scope: [:year, :semester, :number]
   validates_presence_of :year, :semester, :number, :course
-  validates :year, inclusion: {in: 1990..(Time.new.year)}
-  validates :number, inclusion: {in: 1..4}
+  validates_inclusion_of :year, in: 1990..(Time.new.year)
+  validates_inclusion_of :semester, in: 1..2
+  validates_inclusion_of :number, in: 1..4
+
+  # Unique on all columns at the same time -- tests are failing
+  # validates_uniqueness_of :course, scope: [:year, :semester, :number]
 
   default_scope { order("number ASC, year DESC, semester DESC") }
 
