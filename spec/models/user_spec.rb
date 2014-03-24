@@ -13,9 +13,9 @@ describe User do
 
   describe 'scopes' do
     before(:each) do
-      @users = [create(:user), create(:user)]
-      @teachers = [create(:teacher), create(:teacher)]
-      @admins = [create(:admin), create(:admin)]
+      @users = create_list(:user, 2)
+      @teachers = create_list(:teacher, 2)
+      @admins = create_list(:admin, 2)
     end
 
     it '::admins' do
