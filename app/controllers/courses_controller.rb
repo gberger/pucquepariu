@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @majors = Major.all
+    authorize! :manage, @course
   end
 
   # GET /courses/1/edit
@@ -51,7 +51,6 @@ class CoursesController < ApplicationController
       redirect_to edit_course_path(params[:id].upcase), status: :moved_permanently
     end
     @course = Course.find_by_abbreviation(params[:id])
-    @majors = Major.all
   end
 
   # POST /courses
