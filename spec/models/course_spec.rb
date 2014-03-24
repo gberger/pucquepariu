@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Course do
-  before(:each) do
-    @course = build(:course)
-  end
-
   describe 'relations' do
     it { should have_many(:exams) }
     it { should have_many(:study_materials).dependent(:destroy) }
@@ -38,6 +34,7 @@ describe Course do
 
   describe 'before_save' do
     it "upcases the abbreviation before saving" do
+      @course = build(:course)
       @course.abbreviation.downcase!
       @course.save
       @course.abbreviation.should be_upcased
@@ -46,12 +43,14 @@ describe Course do
 
   describe :department_abbreviation do
     it "is part of the course's abbreviation" do
+      @course = build(:course)
       @course.department_abbreviation.should eq(@course.abbreviation[0, 3])
     end
   end
 
   describe :name_with_abbreviation do
     it "joins the name and the abbreviation" do
+      @course = build(:course)
       @course.name_with_abbreviation.should eq([@course.abbreviation, @course.name].join(' - '))
     end
   end
