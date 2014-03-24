@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Course do
   describe 'relations' do
-    it { should have_many(:exams) }
+    it { should have_many(:exams).dependent(:destroy) }
     it { should have_many(:study_materials).dependent(:destroy) }
-    it { should have_many(:course_ads) }
-    it { should have_many(:chat_messages) }
+    it { should have_many(:course_ads).dependent(:delete) }
+    it { should have_many(:chat_messages).dependent(:delete) }
     it { should have_and_belong_to_many(:majors) }
     it { should belong_to(:teacher).class_name('User') }
   end
