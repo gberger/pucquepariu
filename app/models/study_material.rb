@@ -6,7 +6,7 @@ class StudyMaterial < ActiveRecord::Base
 
   mount_uploader :content, ContentUploader
 
-  scope :ordered, joins: :course, order: "courses.abbreviation"
+  scope :ordered, -> { joins(:course).order("courses.abbreviation") }
   scope :recent, -> { order("created_at desc").where(created_at: (Date.today-1.month)..Date.today) }
 
   def self.new_from_filename(params)
