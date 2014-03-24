@@ -47,6 +47,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'fuubar'
 end
 
 group :production do
