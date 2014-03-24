@@ -3,12 +3,12 @@
 FactoryGirl.define do
   factory :user do
     provider 'facebook'
-    uid { |n| n }
+    uid 123456789
     name 'Some guy'
     nickname 'smgy'
     email 'someguy@facebook.com'
 
-    oauth_token { |n| n }
+    oauth_token "CAADxCkwyIr4BAF7lMcszsMCNZBZBitE0qw7g1hQonJuvGiZBK2Q7BiquBa70bWZCRBr8v4OpdxHsKDkZAIXRzmYuAPvUESodJBMJqGFEYl3GfzadNlfJcMvAwlrZBErWvjZBIKD0qY6B3Hczq34wd6eTO8ZCQ27KiCoFZBFjJZC1qvZCdWMOs6fdabc"
     oauth_expires_at 2.months.from_now
 
     role "basic"
@@ -23,16 +23,16 @@ FactoryGirl.define do
   end
 
   factory :course do
-    abbreviation { |n| "INF100#{n}" }
-    name { |n| "Programação #{n}" }
+    abbreviation "INF1005"
+    name "Programação 1"
     credits 4
   end
 
   factory :exam do
     course
-    year { |n| (2000 + n/2).to_i }
-    semester { |n| (n % 2) +1 }
-    number { |n| (n % 4) + 1 }
+    year 2005
+    semester 1
+    number 4
   end
 
   factory :chat_message do
