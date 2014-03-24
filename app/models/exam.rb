@@ -4,7 +4,7 @@ class Exam < ActiveRecord::Base
 
   # Unique on all columns at the same time
   validates_uniqueness_of :course, scope: [:year, :semester, :number]
-  validates_presence_of :year, :semester, :number, :course, :course_id
+  validates_presence_of :year, :semester, :number, :course
   validates :year, inclusion: {in: 1990..(Time.new.year)}
   validates :number, inclusion: {in: 1..4}
 
