@@ -46,6 +46,7 @@ group :development, :test do
   gem 'debugger'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :production do
