@@ -21,7 +21,7 @@ private
     filename_without_extension = filename.split('.').drop(-1).join('.')
     parts = filename_without_extension.split('-')
 
-    self.course = Course.find_by_abbreviation(parts[0].upcase)
+    self.course = Course.find(parts[0].upcase)
 
     if m = /^([A-Z]{3}\d{4})\-(\d{4})\-(\d)\-.(\d)\-(.*)/.match(filename_without_extension)
       year = m[2]
