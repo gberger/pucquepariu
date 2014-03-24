@@ -1,15 +1,23 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ApplicationHelper. For example:
-#
-# describe ApplicationHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 describe ApplicationHelper do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  describe '#facebook_url_to' do
+    it "should give the URL to someone's Facebook profile" do
+      helper.facebook_url_to('pucquepariu').should eq('https://facebook.com/pucquepariu')
+    end
+  end
+
+  describe '#facebook_link_to' do
+    it "should give the link to someone's Facebook profile" do
+      helper.facebook_link_to('pucquepariu').should include('https://facebook.com/pucquepariu')
+    end
+
+    xit 'should contain an anchor tag' do
+      helper.facebook_link_to('pucquepariu').should have_tag('a')
+    end
+
+    xit 'should contain some icons' do
+      helper.facebook_link_to('pucquepariu').should have_tag('i')
+    end
+  end
 end
