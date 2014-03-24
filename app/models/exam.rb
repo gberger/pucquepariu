@@ -8,7 +8,7 @@ class Exam < ActiveRecord::Base
   validates_inclusion_of :number, in: 1..4
 
   # Unique on all columns at the same time -- tests are failing
-  # validates_uniqueness_of :course, scope: [:year, :semester, :number]
+  validates_uniqueness_of :year, scope: [:semester, :number, :course]
 
   default_scope { order("number ASC, year DESC, semester DESC") }
 
