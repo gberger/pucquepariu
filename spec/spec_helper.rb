@@ -33,4 +33,17 @@ RSpec.configure do |config|
 
   # factory_girl
   config.include FactoryGirl::Syntax::Methods
+
+  # Allows the use of with_context like this:
+  # shared_context "when logged out" do
+  #   before { @user = nil }
+  #   before { session[:user_id] = nil }
+  # end
+  # describe 'GET #index' do
+  #   with_context "when logged out" do
+  #     before { get :index }
+  #     it { should respond_with(403) }
+  #   end
+  # end
+  config.alias_it_should_behave_like_to :with_context
 end

@@ -23,10 +23,18 @@ FactoryGirl.define do
   end
 
   factory :course do
+    teacher
     abbreviation "INF1005"
     name "Programação 1"
     credits 4
+
+    factory :invalid_course do
+      abbreviation 'ABC12345'
+      name ''
+      credits -1
+    end
   end
+
 
   factory :exam do
     course
