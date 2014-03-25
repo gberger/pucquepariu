@@ -28,17 +28,18 @@ describe CoursesController do
     with_context 'when logged in as an admin' do
       before { get :new }
       it { should respond_with(200) }
+      it { should render_template('new') }
     end
   end
 
   describe 'POST #create' do
     with_context 'when logged out' do
-      before { post :create }
+      before { post :create, course: attributes_for(:course) }
       it { should respond_with(403) }
     end
 
     with_context 'when logged in as a basic user' do
-      before { post :create }
+      before { post :create, course: attributes_for(:course) }
       it { should respond_with(403) }
     end
 
@@ -114,24 +115,26 @@ describe CoursesController do
 
   describe 'PUT #update' do
     context 'when logged out' do
-      before { put :update, id: create(:course) }
+      before { put :update, id: create(:course).abbreviation, course: attributes_for(:course) }
       it { should respond_with(403) }
     end
   
     with_context 'when logged in as a basic user' do
-      before { put :update, id: create(:course) }
+      before { put :update, id: create(:course).abbreviation, course: attributes_for(:course) }
       it { should respond_with(403) }
     end
   
     with_context 'when logged in as a teacher' do
       with_context "who doesn't teach the course" do
-        before { put :update, id: create(:course).abbreviation, course: attributes_for(:course) }
-        it { should respond_with(302) }
+        before { put :update, id: @course.abbreviation, course: attributes_for(:course) }
+        it { should respond_with(403) }
       end
 
       with_context 'who teaches the course' do
         context "with invalid attributes" do
-
+          before { put :update, id: @course.abbreviation, course: attributes_for(:invalid_course) }
+          it { should respond_with(200) }
+          it { should render_template('edit') }
         end
 
         context "with valid attributes" do
@@ -146,13 +149,15 @@ describe CoursesController do
 
     with_context 'when logged in as an admin' do
       context "with invalid attributes" do
-
+        before { put :update, id: create(:course).abbreviation, course: attributes_for(:invalid_course) }
+        it { should respond_with(200) }
+        it { should render_template('edit') }
       end
 
       context "with valid attributes" do
-        before { put :update, id: @course.abbreviation, course: attributes_for(:course) }
+        before { put :update, id: create(:course).abbreviation, course: attributes_for(:course) }
         it "locates the course" do
-          assigns[:course].should == @course
+          assigns[:course].should == Course.last
         end
       end
     end
@@ -175,8 +180,9 @@ describe CoursesController do
         it { should respond_with(403) }
       end
       with_context "who teaches the course" do
-        before {  }
-        it { delete :destroy, id: @course.abbreviation; should respond_with(302) }
+        before { delete :destroy, id: @course.abbreviation }
+        it { should respond_with(302) }
+        it { should redirect_to(courses_url) }
       end
     end
 
@@ -185,5 +191,4 @@ describe CoursesController do
       it { should respond_with(302) }
     end
   end
-
 end
