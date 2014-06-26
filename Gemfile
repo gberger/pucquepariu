@@ -8,7 +8,7 @@ gem 'pg'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'omniauth-facebook'
-gem 'cancan'
+gem 'cancancan'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -36,6 +36,7 @@ gem 'redcarpet'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry'
 end
 
 group :development, :test do
@@ -43,6 +44,11 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'debugger'
+  gem 'guard-rspec'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'fuubar'
+  gem 'its'
 end
 
 group :production do

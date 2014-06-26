@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  authorize_resource
+  # sets @course and calls authorize!
+  load_and_authorize_resource
 
   # GET /courses
   def index
@@ -11,7 +12,6 @@ class CoursesController < ApplicationController
     unless params[:id].upcased?
       return redirect_to course_path(params[:id].upcase), status: :moved_permanently
     end
-    @course = Course.find_by_abbreviation(params[:id])
     @ad = @course.course_ads.sample
 
     @recent_messages = ChatMessage.uncached do
@@ -41,8 +41,6 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
-    @majors = Major.all
   end
 
   # GET /courses/1/edit
@@ -50,16 +48,12 @@ class CoursesController < ApplicationController
     unless params[:id].upcased?
       redirect_to edit_course_path(params[:id].upcase), status: :moved_permanently
     end
-    @course = Course.find_by_abbreviation(params[:id])
-    @majors = Major.all
   end
 
   # POST /courses
   def create
-    @course = Course.new(course_params)
-
     if @course.save
-      redirect_to @course, notice: 'course was successfully created.'
+      redirect_to @course, notice: 'Course was successfully created.'
     else
       render action: 'new'
     end
@@ -67,10 +61,8 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1
   def update
-    @course = Course.find_by_abbreviation(params[:id])
-
     if @course.update(course_params)
-      redirect_to @course, notice: 'course was successfully updated.'
+      redirect_to @course, notice: 'Course was successfully updated.'
     else
       render action: 'edit'
     end
@@ -78,7 +70,6 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   def destroy
-    @course = Course.find_by_abbreviation(params[:id])
     @course.destroy
     redirect_to courses_url
   end

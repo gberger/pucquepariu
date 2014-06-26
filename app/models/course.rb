@@ -1,16 +1,16 @@
 class Course < ActiveRecord::Base
   has_many :exams, dependent: :destroy
   has_many :study_materials, dependent: :destroy
-  belongs_to :teacher, class_name: "User"
-  has_many :course_ads
-  has_many :chat_messages
+  has_many :course_ads, dependent: :delete_all
+  has_many :chat_messages, dependent: :delete_all
   has_and_belongs_to_many :majors
+  belongs_to :teacher, class_name: "User"
 
   validates_presence_of :abbreviation, :name, :credits
   validates_uniqueness_of :abbreviation, case_sensitive: false
-  validates_format_of :abbreviation, with: /[A-Z]{3}[0-9]{4}/, message: 'must be in the format "ABC1234"'
+  validates_format_of :abbreviation, with: /\A[A-Z]{3}[0-9]{4}\z/, message: 'must be in the format "ABC1234"'
 
-  default_scope order("abbreviation ASC")
+  default_scope { order("abbreviation ASC") }
 
   extend FriendlyId
   friendly_id :abbreviation
@@ -30,6 +30,6 @@ class Course < ActiveRecord::Base
 
   before_validation :normalize_abbreviation
   def normalize_abbreviation
-    self.abbreviation.gsub!(/[^A-Za-z0-9]/, '')
+    self.abbreviation.gsub!(/[^A-Za-z0-9]/, '') if self.abbreviation
   end
 end

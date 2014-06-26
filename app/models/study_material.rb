@@ -6,7 +6,7 @@ class StudyMaterial < ActiveRecord::Base
 
   mount_uploader :content, ContentUploader
 
-  scope :ordered, joins: :course, order: "courses.abbreviation"
+  scope :ordered, -> { joins(:course).order("courses.abbreviation") }
   scope :recent, -> { order("created_at desc").where(created_at: (Date.today-1.month)..Date.today) }
 
   def self.new_from_filename(params)
@@ -21,7 +21,7 @@ private
     filename_without_extension = filename.split('.').drop(-1).join('.')
     parts = filename_without_extension.split('-')
 
-    self.course = Course.find_by_abbreviation(parts[0].upcase)
+    self.course = Course.find(parts[0].upcase)
 
     if m = /^([A-Z]{3}\d{4})\-(\d{4})\-(\d)\-.(\d)\-(.*)/.match(filename_without_extension)
       year = m[2]

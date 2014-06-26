@@ -2,11 +2,13 @@ class User < ActiveRecord::Base
   has_many :chat_messages
 
   ROLES = %w[basic teacher admin]
-  validate :role, inclusion: {in: ROLES}
+  validates_inclusion_of :role, in: ROLES
+  validates_presence_of :role
 
-  default_scope order('id ASC')
-  scope :admin, -> { where(role: 'admin') }
-  scope :teacher, -> {where('role=? OR role=?', 'admin', 'teacher')}
+  default_scope { order('id ASC') }
+  scope :admins, -> { where(role: 'admin') }
+  scope :teachers, -> { where(role: 'teacher') }
+  scope :editors, -> { where('role=? OR role=?', 'admin', 'teacher') }
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
