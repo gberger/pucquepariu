@@ -16,25 +16,27 @@
 
 <div class="row">
   <div class="col-md-5">
-    <div class="cloudy">
-      <h2>Novidades</h2>
+    <% unless StudyMaterial.recent.empty? %>
+      <div class="cloudy">
+        <h2>Novidades</h2>
 
-      <% cache(StudyMaterial.last.cache_key) do %>
-        <ul>
-          <% StudyMaterial.recent.group_by{|s| s.created_at.to_date}.each_pair do |date, date_materials| %>
-            <% date_materials.group_by(&:course).each_pair do |course, course_materials| %>
-              <li>
-                <%= pluralize(course_materials.length, 'novo arquivo', 'novos arquivos') %>
-                de
-                <%= link_to course.abbreviation, course %>
-                (<%= date %>)
-              </li>
+        <% cache(StudyMaterial.last.cache_key) do %>
+          <ul>
+            <% StudyMaterial.recent.group_by{|s| s.created_at.to_date}.each_pair do |date, date_materials| %>
+              <% date_materials.group_by(&:course).each_pair do |course, course_materials| %>
+                <li>
+                  <%= pluralize(course_materials.length, 'novo arquivo', 'novos arquivos') %>
+                  de
+                  <%= link_to course.abbreviation, course %>
+                  (<%= date %>)
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
-      <% end %>
+          </ul>
+        <% end %>
 
-    </div>
+      </div>
+    <% end %>
   </div>
 
 
