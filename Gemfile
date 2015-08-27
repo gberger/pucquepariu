@@ -3,7 +3,7 @@ source 'https://rails-assets.org'
 
 ruby '2.2.1'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.2.0'
 gem 'pg'
 
 gem 'bcrypt', '~> 3.1.2'
@@ -43,7 +43,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
-  gem 'debugger'
+  gem 'byebug'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
   gem 'capybara'
