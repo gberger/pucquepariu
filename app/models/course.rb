@@ -1,7 +1,6 @@
 class Course < ActiveRecord::Base
   has_many :exams, dependent: :destroy
   has_many :study_materials, dependent: :destroy
-  has_many :course_ads, dependent: :delete_all
   has_many :chat_messages, dependent: :delete_all
   has_and_belongs_to_many :majors
   belongs_to :teacher, class_name: "User"

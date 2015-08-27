@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
     unless params[:id].upcased?
       return redirect_to course_path(params[:id].upcase), status: :moved_permanently
     end
-    @ad = @course.course_ads.sample
 
     @recent_messages = ChatMessage.uncached do
        ChatMessage.where(course_id: @course.id).order("created_at DESC").limit(20)
