@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827035809) do
+ActiveRecord::Schema.define(version: 20160617223600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "chat_messages", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "user_id"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "name",         limit: 255
