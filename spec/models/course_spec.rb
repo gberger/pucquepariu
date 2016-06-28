@@ -5,7 +5,6 @@ describe Course do
     it { should have_many(:exams).dependent(:destroy) }
     it { should have_many(:study_materials).dependent(:destroy) }
     it { should have_many(:course_ads).dependent(:delete_all) }
-    it { should have_many(:chat_messages).dependent(:delete_all) }
     it { should have_and_belong_to_many(:majors) }
     it { should belong_to(:teacher).class_name('User') }
   end

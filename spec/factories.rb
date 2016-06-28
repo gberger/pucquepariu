@@ -42,10 +42,4 @@ FactoryGirl.define do
     semester 1
     number 4
   end
-
-  factory :chat_message do
-    course
-    user
-    text "This is some text."
-  end
 end
