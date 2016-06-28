@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   scope :editors, -> { where('role=? OR role=?', 'admin', 'teacher') }
 
   def self.from_omniauth(auth)
+    puts auth
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
