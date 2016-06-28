@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :chat_messages
-
   ROLES = %w[basic teacher admin]
   validates_inclusion_of :role, in: ROLES
   validates_presence_of :role
@@ -29,4 +27,6 @@ class User < ActiveRecord::Base
   def role_above?(base_role)
     ROLES.index(base_role.to_s) < ROLES.index(role)
   end
+
+  attr
 end
